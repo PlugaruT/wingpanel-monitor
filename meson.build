@@ -8,11 +8,14 @@ add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()), lan
 executable(
     meson.project_name(),
     'src/Application.vala',
+    'src/MainWindow.vala',
+    'src/Toggles.vala',
     dependencies: [
         dependency('gee-0.8'),
         dependency('glib-2.0'),
         dependency('granite'),
         dependency('gtk+-3.0'),
+        dependency('wingpanel-2.0'),
         meson.get_compiler('c').find_library('m', required : false)
     ],
     install: true
