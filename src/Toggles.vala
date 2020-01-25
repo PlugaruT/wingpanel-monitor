@@ -28,19 +28,29 @@ namespace WingpanelMonitor {
         private Wingpanel.Widgets.Switch graph_switch;
         private Wingpanel.Widgets.Switch indicator_icon_switch;
 
+        public static GLib.Settings settings;
+
         public TogglesWidget () {
-            name = "settings";
             orientation = Gtk.Orientation.HORIZONTAL;
             hexpand = true;
         }
 
         construct {
-            cpu_switch = new Wingpanel.Widgets.Switch ("Display CPU usage");
-            ram_switch = new Wingpanel.Widgets.Switch ("Display RAM usage");
-            network_switch = new Wingpanel.Widgets.Switch ("Display Network usage");
-            label_description_switch = new Wingpanel.Widgets.Switch ("Display label");
-            graph_switch = new Wingpanel.Widgets.Switch ("Display graph");
-            indicator_icon_switch = new Wingpanel.Widgets.Switch ("Display icon");
+            settings = new GLib.Settings ("com.github.plugarut.wingpanel-monitor");
+
+            cpu_switch = new Wingpanel.Widgets.Switch ("Display CPU usage", settings.get_boolean("show-cpu"));
+            ram_switch = new Wingpanel.Widgets.Switch ("Display RAM usage", settings.get_boolean("show-ram"));
+            network_switch = new Wingpanel.Widgets.Switch ("Display Network usage", settings.get_boolean("show-network"));
+            label_description_switch = new Wingpanel.Widgets.Switch ("Display label", settings.get_boolean("show-desr"));
+            graph_switch = new Wingpanel.Widgets.Switch ("Display graph", settings.get_boolean("show-graph"));
+            indicator_icon_switch = new Wingpanel.Widgets.Switch ("Display Indicator icon", settings.get_boolean("show-icon"));
+
+            settings.bind ("show-cpu", cpu_switch.get_switch (), "active", SettingsBindFlags.DEFAULT);
+            settings.bind ("show-ram", ram_switch.get_switch (), "active", SettingsBindFlags.DEFAULT);
+            settings.bind ("show-network", network_switch.get_switch (), "active", SettingsBindFlags.DEFAULT);
+            settings.bind ("show-desr", label_description_switch.get_switch (), "active", SettingsBindFlags.DEFAULT);
+            settings.bind ("show-graph", graph_switch.get_switch (), "active", SettingsBindFlags.DEFAULT);
+            settings.bind ("show-icon", indicator_icon_switch.get_switch (), "active", SettingsBindFlags.DEFAULT);
 
             attach (cpu_switch,                 0, 1, 1, 1);
             attach (ram_switch,                 0, 2, 1, 1);
