@@ -1,0 +1,39 @@
+<schemalist>
+  <schema path="/com/github/plugarut/wingpanel-monitor/" id="com.github.plugarut.wingpanel-monitor" gettext-domain="wingpanel-monitor">
+    <key type="b" name="show-cpu">
+      <default>true</default>
+      <summary>Show CPU load in Wingpanel</summary>
+      <description></description>
+    </key>
+    <key type="b" name="show-ram">
+      <default>true</default>
+      <summary>Show RAM usage in Wingpanel</summary>
+      <description></description>
+    </key>
+    <key type="b" name="show-network">
+      <default>false</default>
+      <summary>Show Network usage in Wingpanel</summary>
+      <description></description>
+    </key>
+    <key type="b" name="show-desr">
+      <default>false</default>
+      <summary>Show label for CPU/RAM in Wingpanel</summary>
+      <description></description>
+    </key>
+    <key type="b" name="show-graph">
+      <default>false</default>
+      <summary>Show graph for CPU/RAM in Wingpanel</summary>
+      <description></description>
+    </key>
+    <key type="b" name="show-icon">
+      <default>false</default>
+      <summary>Show indicator icon in Wingpanel</summary>
+      <description></description>
+    </key>
+    <key type="b" name="network-in-bits">
+      <default>false</default>
+      <summary>Show network in bits or Bytes</summary>
+      <description></description>
+    </key>
+  </schema>
+</schemalist>
