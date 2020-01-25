@@ -11,6 +11,9 @@ executable(
     'src/Application.vala',
     'src/MainWindow.vala',
     'src/Toggles.vala',
+    'src/Indicator.vala',
+    'src/DisplayWidget.vala',
+    'src/PopoverWidget.vala',
     dependencies: [
         dependency('gee-0.8'),
         dependency('glib-2.0'),
