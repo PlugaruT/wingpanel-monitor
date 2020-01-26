@@ -70,7 +70,7 @@ public Wingpanel.Indicator ? get_indicator (Module module, Wingpanel.IndicatorMa
     debug ("Loading system monitor indicator");
 
     if (server_type != Wingpanel.IndicatorManager.ServerType.SESSION) {
-        debug ("Wingpanel is not in session, not loading sys-monitor");
+        debug ("Wingpanel is not in session, not loading wingpanel-monitor indicator");
         return null;
     }
 

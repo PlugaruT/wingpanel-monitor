@@ -75,11 +75,11 @@ namespace WingpanelMonitor {
             attach (cpu_switch,                 0, 3, 1, 1);
             attach (ram_switch,                 0, 4, 1, 1);
             attach (network_switch,             0, 5, 1, 1);
-            attach (label_description_switch,   0, 6, 1, 1);
-            attach (graph_switch,               0, 7, 1, 1);
-            attach (indicator_icon_switch,      0, 8, 1, 1);
-            attach (separator_end,              0, 9, 1, 1);
-            attach (minimize_button,            0, 10, 1, 1);
+            // attach (label_description_switch,   0, 6, 1, 1);
+            // attach (graph_switch,               0, 7, 1, 1);
+            // attach (indicator_icon_switch,      0, 8, 1, 1);
+            attach (separator_end,              0, 6, 1, 1);
+            attach (minimize_button,            0, 7, 1, 1);
         }
     }
 }

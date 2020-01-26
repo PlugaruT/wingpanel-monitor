@@ -36,6 +36,7 @@ shared_module(
     'src/Indicator.vala',
     'src/DisplayWidget.vala',
     'src/PopoverWidget.vala',
+    'src/IndicatorWidget.vala',
     dependencies: [
         dependency('gee-0.8'),
         dependency('glib-2.0'),

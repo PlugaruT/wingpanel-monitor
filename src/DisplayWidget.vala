@@ -22,11 +22,25 @@
 
 namespace WingpanelMonitor {
     public class DisplayWidget : Gtk.Grid {
-        private Wingpanel.Widgets.OverlayIcon icon;
+        private GLib.Settings settings;
 
         construct {
-            icon = new Wingpanel.Widgets.OverlayIcon ("dialog-information-symbolic");
-            add (icon);
+            settings = new GLib.Settings ("com.github.plugarut.wingpanel-monitor");
+
+            var cpu_info = new IndicatorWidget ("utilities-system-monitor-symbolic");
+            var ram_info = new IndicatorWidget ("utilities-system-monitor-symbolic");
+            var upload_info = new IndicatorWidget ("go-up-symbolic");
+            var download_info = new IndicatorWidget ("go-down-symbolic");
+
+            settings.bind ("show-cpu", cpu_info, "display", SettingsBindFlags.GET);
+            settings.bind ("show-ram", ram_info, "display", SettingsBindFlags.GET);
+            settings.bind ("show-network", upload_info, "display", SettingsBindFlags.GET);
+            settings.bind ("show-network", download_info, "display", SettingsBindFlags.GET);
+
+            add (cpu_info);
+            add (ram_info);
+            add (upload_info);
+            add (download_info);
         }
     }
 }
