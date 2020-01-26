@@ -1,5 +1,10 @@
 <schemalist>
   <schema path="/com/github/plugarut/wingpanel-monitor/" id="com.github.plugarut.wingpanel-monitor" gettext-domain="wingpanel-monitor">
+    <key type="b" name="display-indicator">
+      <default>true</default>
+      <summary>Display indicator in Wingpanel</summary>
+      <description></description>
+    </key>
     <key type="b" name="show-cpu">
       <default>true</default>
       <summary>Show CPU load in Wingpanel</summary>

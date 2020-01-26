@@ -25,6 +25,8 @@ public class WingpanelMonitor.Indicator : Wingpanel.Indicator {
     private DisplayWidget display_widget;
     private PopoverWidget popover_widget;
 
+    private static GLib.Settings settings;
+
     public Indicator (Wingpanel.IndicatorManager.ServerType server_type) {
         Object (
             code_name: APPNAME,
@@ -32,7 +34,14 @@ public class WingpanelMonitor.Indicator : Wingpanel.Indicator {
             description: "System monitor indicator for Wingpanel"
             );
 
-        visible = true;
+    }
+
+    construct {
+        settings = new GLib.Settings ("com.github.plugarut.wingpanel-monitor");
+
+        visible = settings.get_boolean("display-indicator");
+
+        settings.bind ("display-indicator", this, "visible", SettingsBindFlags.DEFAULT);
     }
 
     public override Gtk.Widget get_display_widget () {

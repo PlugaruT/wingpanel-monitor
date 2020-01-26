@@ -28,6 +28,8 @@ namespace WingpanelMonitor {
         private Wingpanel.Widgets.Switch graph_switch;
         private Wingpanel.Widgets.Switch indicator_icon_switch;
 
+        private Wingpanel.Widgets.Switch indicator;
+
         public static GLib.Settings settings;
 
         public TogglesWidget () {
@@ -45,6 +47,11 @@ namespace WingpanelMonitor {
             graph_switch = new Wingpanel.Widgets.Switch ("Display graph", settings.get_boolean("show-graph"));
             indicator_icon_switch = new Wingpanel.Widgets.Switch ("Display Indicator icon", settings.get_boolean("show-icon"));
 
+            indicator = new Wingpanel.Widgets.Switch ("Display Indicator in Wingpanel", settings.get_boolean("display-indicator"));
+
+
+            settings.bind ("display-indicator", indicator.get_switch (), "active", SettingsBindFlags.DEFAULT);
+
             settings.bind ("show-cpu", cpu_switch.get_switch (), "active", SettingsBindFlags.DEFAULT);
             settings.bind ("show-ram", ram_switch.get_switch (), "active", SettingsBindFlags.DEFAULT);
             settings.bind ("show-network", network_switch.get_switch (), "active", SettingsBindFlags.DEFAULT);
@@ -58,6 +65,7 @@ namespace WingpanelMonitor {
             attach (label_description_switch,   0, 4, 1, 1);
             attach (graph_switch,               0, 5, 1, 1);
             attach (indicator_icon_switch,      0, 6, 1, 1);
+            attach (indicator,                  0, 7, 1, 1);
         }
     }
 }
