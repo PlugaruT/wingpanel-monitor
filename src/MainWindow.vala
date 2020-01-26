@@ -24,11 +24,11 @@ namespace WingpanelMonitor {
         private TogglesWidget toggles;
 
         public MainWindow (Gtk.Application application) {
-            Object (application: application, border_width: 0, icon_name: "com.github.plugarut.wingpanel-monitor", resizable: false, title: "Wingpanel Monitor", window_position: Gtk.WindowPosition.CENTER);
+            Object (application: application, border_width: 1, icon_name: "com.github.plugarut.wingpanel-monitor", resizable: false, title: "Wingpanel Monitor", window_position: Gtk.WindowPosition.CENTER);
         }
 
         construct {
-
+            default_width = 300;
             toggles = new TogglesWidget();
 
             var layout = new Gtk.Grid ();

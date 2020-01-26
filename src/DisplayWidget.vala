@@ -25,11 +25,6 @@ namespace WingpanelMonitor {
         private Wingpanel.Widgets.OverlayIcon icon;
 
         construct {
-            column_spacing = 4;
-            margin_top = 4;
-
-
-
             icon = new Wingpanel.Widgets.OverlayIcon ("dialog-information-symbolic");
             add (icon);
         }
