@@ -1,12 +1,13 @@
 namespace WingpanelMonitor {
     public class IndicatorWidget : Gtk.Box {
-        private Gtk.Label percentage_label;
+        private Gtk.Label label;
         private Gtk.Revealer widget_revealer;
 
         public string icon_name { get; construct; }
+        public int char_width { get; construct; }
 
-        public int percentage {
-            set { percentage_label.label = "%i%%".printf (value); }
+        public string label_value {
+            set {label.label = value; }
         }
 
         public bool display {
@@ -14,10 +15,11 @@ namespace WingpanelMonitor {
             get { return widget_revealer.get_reveal_child () ; }
         }
 
-        public IndicatorWidget (string icon_name) {
+        public IndicatorWidget (string icon_name, int char_width) {
             Object (
                 orientation: Gtk.Orientation.HORIZONTAL,
-                icon_name: icon_name
+                icon_name: icon_name,
+                char_width: char_width
             );
         }
 
@@ -26,11 +28,11 @@ namespace WingpanelMonitor {
 
             var group = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
 
-            percentage_label = new Gtk.Label ("N/A");
-            percentage_label.set_width_chars (4);
+            label = new Gtk.Label ("N/A");
+            label.set_width_chars (char_width);
 
             group.pack_start (icon);
-            group.pack_start (percentage_label);
+            group.pack_start (label);
 
             widget_revealer = new Gtk.Revealer();
             widget_revealer.transition_type = Gtk.RevealerTransitionType.SLIDE_RIGHT;

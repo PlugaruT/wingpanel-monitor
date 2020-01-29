@@ -39,6 +39,8 @@ shared_module(
     'src/IndicatorWidget.vala',
     'src/cpu.vala',
     'src/Memory.vala',
+    'src/Network.vala',
+    'src/Utils.vala',
     dependencies: [
         dependency('gee-0.8'),
         dependency('glib-2.0'),

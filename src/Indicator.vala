@@ -26,6 +26,7 @@ public class WingpanelMonitor.Indicator : Wingpanel.Indicator {
     private PopoverWidget popover_widget;
     private CPU cpu_data;
     private Memory memory_data;
+    private Network network_data;
 
     private static GLib.Settings settings;
 
@@ -40,6 +41,8 @@ public class WingpanelMonitor.Indicator : Wingpanel.Indicator {
     construct {
         cpu_data = new CPU ();
         memory_data = new Memory ();
+        network_data = new Network ();
+
         settings = new GLib.Settings ("com.github.plugarut.wingpanel-monitor");
 
         visible = settings.get_boolean("display-indicator");
@@ -74,6 +77,8 @@ public class WingpanelMonitor.Indicator : Wingpanel.Indicator {
             Timeout.add_seconds (1, () => {
                 display_widget.update_cpu (cpu_data.percentage_used);
                 display_widget.update_memory (memory_data.percentage_used);
+                var net = network_data.get_bytes ();
+                display_widget.update_network (net[0], net[1]);
                 return true;
             });
         }

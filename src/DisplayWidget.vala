@@ -33,10 +33,10 @@ namespace WingpanelMonitor {
             settings = new GLib.Settings ("com.github.plugarut.wingpanel-monitor");
 
 
-            cpu_info = new IndicatorWidget ("utilities-system-monitor-symbolic");
-            ram_info = new IndicatorWidget ("utilities-system-monitor-symbolic");
-            upload_info = new IndicatorWidget ("go-up-symbolic");
-            download_info = new IndicatorWidget ("go-down-symbolic");
+            cpu_info = new IndicatorWidget ("utilities-system-monitor-symbolic", 4);
+            ram_info = new IndicatorWidget ("utilities-system-monitor-symbolic", 4);
+            upload_info = new IndicatorWidget ("go-up-symbolic", 8);
+            download_info = new IndicatorWidget ("go-down-symbolic", 8);
 
             settings.bind ("show-cpu", cpu_info, "display", SettingsBindFlags.GET);
             settings.bind ("show-ram", ram_info, "display", SettingsBindFlags.GET);
@@ -50,11 +50,16 @@ namespace WingpanelMonitor {
         }
 
         public void update_cpu (int val) {
-            cpu_info.percentage = val;
+            cpu_info.label_value = val.to_string () + "%";
         }
 
         public void update_memory (int val) {
-            ram_info.percentage = val;
+            ram_info.label_value = val.to_string () + "%";
+        }
+
+        public void update_network (int upload, int download) {
+            upload_info.label_value = WingpanelMonitor.Utils.format_net_speed (upload, true, false);
+            download_info.label_value = WingpanelMonitor.Utils.format_net_speed (download, true, false);
         }
     }
 }
