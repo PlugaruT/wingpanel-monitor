@@ -6,9 +6,21 @@ i18n = import('i18n')
 add_project_arguments(['--vapidir', join_paths(meson.current_source_dir(), 'vapi')], language: 'vala')
 add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()), language:'c')
 
+# common dirs
 prefix = get_option('prefix')
+datadir = join_paths(prefix, get_option('datadir'))
 libdir = join_paths(prefix, get_option('libdir'))
+icondir = join_paths(datadir, 'icons', 'hicolor')
+
+# deps
 wingpanel = dependency('wingpanel-2.0')
+
+icons_gresource = gnome.compile_resources(
+    'gresource_icons',
+    'data/icons/icons.indicator.gresource.xml',
+    source_dir: 'data/icons',
+    c_name: 'as'
+)
 
 executable(
     meson.project_name(),
@@ -41,6 +53,7 @@ shared_module(
     'src/Memory.vala',
     'src/Network.vala',
     'src/Utils.vala',
+    icons_gresource,
     dependencies: [
         dependency('gee-0.8'),
         dependency('glib-2.0'),

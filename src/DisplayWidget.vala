@@ -33,8 +33,8 @@ namespace WingpanelMonitor {
             settings = new GLib.Settings ("com.github.plugarut.wingpanel-monitor");
 
 
-            cpu_info = new IndicatorWidget ("utilities-system-monitor-symbolic", 4);
-            ram_info = new IndicatorWidget ("utilities-system-monitor-symbolic", 4);
+            cpu_info = new IndicatorWidget ("cpu-symbolic", 4);
+            ram_info = new IndicatorWidget ("ram-symbolic", 4);
             upload_info = new IndicatorWidget ("go-up-symbolic", 8);
             download_info = new IndicatorWidget ("go-down-symbolic", 8);
 
