@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+  <id>com.github.plugarut.wingpanel-monitor</id>
+  <metadata_license>CC0</metadata_license>
+  <project_license>GPL-3.0+</project_license>
+  <name>Wingpanel Monitor</name>
+  <summary>System monitor indicator for Wingpanel</summary>
+  <description>
+    <p>Display usage of system resources in Wingpanel.</p>
+  </description>
+    <custom>
+     <value key="x-appcenter-color-primary">#d7f4d7</value>
+     <value key="x-appcenter-color-primary-text">#242d40</value>
+     <value key="x-appcenter-suggested-price">0</value>
+  </custom>
+    <screenshots>
+    <screenshot type="default">
+      <image>https://github.com/plugarut/wingpanel-monitor/raw/master/data/com.github.plugarut.wingpanel-monitor.screenshot.png</image>
+    </screenshot>
+  </screenshots>
+  <developer_name>Stanisław Dac</developer_name>
+  <url type="homepage">https://github.com/plugarut/wingpanel-monitor</url>
+  <url type="bugtracker">https://github.com/plugarut/wingpanel-monitor/issues</url>
+<url type="help">https://github.com/plugarut/wingpanel-monitor/issues</url>
+
+<releases>
+    <release version="0.0.1" date="2020-01-29">
+​      <description>
+​         <ul>
+           <li>Initial release</li>
+        </ul>
+​      </description>
+​    </release>
+​  </releases>
+</component>
