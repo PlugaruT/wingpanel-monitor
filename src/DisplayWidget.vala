@@ -23,14 +23,20 @@
 namespace WingpanelMonitor {
     public class DisplayWidget : Gtk.Grid {
         private GLib.Settings settings;
+        private IndicatorWidget cpu_info;
+        private IndicatorWidget ram_info;
+        private IndicatorWidget upload_info;
+        private IndicatorWidget download_info;
 
         construct {
+            valign = Gtk.Align.CENTER;
             settings = new GLib.Settings ("com.github.plugarut.wingpanel-monitor");
 
-            var cpu_info = new IndicatorWidget ("utilities-system-monitor-symbolic");
-            var ram_info = new IndicatorWidget ("utilities-system-monitor-symbolic");
-            var upload_info = new IndicatorWidget ("go-up-symbolic");
-            var download_info = new IndicatorWidget ("go-down-symbolic");
+
+            cpu_info = new IndicatorWidget ("utilities-system-monitor-symbolic");
+            ram_info = new IndicatorWidget ("utilities-system-monitor-symbolic");
+            upload_info = new IndicatorWidget ("go-up-symbolic");
+            download_info = new IndicatorWidget ("go-down-symbolic");
 
             settings.bind ("show-cpu", cpu_info, "display", SettingsBindFlags.GET);
             settings.bind ("show-ram", ram_info, "display", SettingsBindFlags.GET);
@@ -41,6 +47,14 @@ namespace WingpanelMonitor {
             add (ram_info);
             add (upload_info);
             add (download_info);
+        }
+
+        public void update_cpu (int val) {
+            cpu_info.percentage = val;
+        }
+
+        public void update_memory (int val) {
+            ram_info.percentage = val;
         }
     }
 }

@@ -27,7 +27,7 @@ namespace WingpanelMonitor {
             var group = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
 
             percentage_label = new Gtk.Label ("N/A");
-            percentage_label.margin = 2;
+            percentage_label.set_width_chars (4);
 
             group.pack_start (icon);
             group.pack_start (percentage_label);

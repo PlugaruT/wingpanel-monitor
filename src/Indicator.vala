@@ -24,6 +24,8 @@ public class WingpanelMonitor.Indicator : Wingpanel.Indicator {
 
     private DisplayWidget display_widget;
     private PopoverWidget popover_widget;
+    private CPU cpu_data;
+    private Memory memory_data;
 
     private static GLib.Settings settings;
 
@@ -33,10 +35,11 @@ public class WingpanelMonitor.Indicator : Wingpanel.Indicator {
             display_name: "Wingpanel-Monitor",
             description: "System monitor indicator for Wingpanel"
             );
-
     }
 
     construct {
+        cpu_data = new CPU ();
+        memory_data = new Memory ();
         settings = new GLib.Settings ("com.github.plugarut.wingpanel-monitor");
 
         visible = settings.get_boolean("display-indicator");
@@ -47,6 +50,7 @@ public class WingpanelMonitor.Indicator : Wingpanel.Indicator {
     public override Gtk.Widget get_display_widget () {
         if (display_widget == null) {
             display_widget = new DisplayWidget();
+            update_display_widget_data ();
         }
         return display_widget;
     }
@@ -63,6 +67,16 @@ public class WingpanelMonitor.Indicator : Wingpanel.Indicator {
     }
 
     public override void closed () {
+    }
+
+    private void update_display_widget_data () {
+        if (display_widget != null) {
+            Timeout.add_seconds (1, () => {
+                display_widget.update_cpu (cpu_data.percentage_used);
+                display_widget.update_memory (memory_data.percentage_used);
+                return true;
+            });
+        }
     }
 }
 
