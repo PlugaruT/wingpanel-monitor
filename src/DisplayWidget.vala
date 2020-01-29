@@ -30,6 +30,7 @@ namespace WingpanelMonitor {
 
         construct {
             valign = Gtk.Align.CENTER;
+            margin_top = 4;
             settings = new GLib.Settings ("com.github.plugarut.wingpanel-monitor");
 
 
