@@ -24,6 +24,26 @@ namespace WingpanelMonitor {
         construct {
             column_spacing = 4;
             margin_top = 4;
+
+            var settings_button = new Gtk.ModelButton ();
+            settings_button.text = _ ("Open Settings");
+            settings_button.get_style_context ().add_class ("menuitem");
+            settings_button.get_style_context ().remove_class ("button");
+            settings_button.clicked.connect (() => {
+                try {
+                    AppInfo.launch_default_for_uri ("com.github.plugarut.wingpanel-monitor", null);
+                } catch (Error e) {
+                    warning ("%s\n", e.message);
+                }
+            });
+
+
+            var separator_start = new Wingpanel.Widgets.Separator ();
+            separator_start.hexpand = true;
+
+            attach (separator_start, 0, 0, 1, 1);
+            attach (settings_button,     0, 1, 1, 1);
+
         }
     }
 }

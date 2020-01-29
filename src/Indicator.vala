@@ -52,7 +52,7 @@ public class WingpanelMonitor.Indicator : Wingpanel.Indicator {
 
     public override Gtk.Widget get_display_widget () {
         if (display_widget == null) {
-            display_widget = new DisplayWidget();
+            display_widget = new DisplayWidget ();
             update_display_widget_data ();
         }
         return display_widget;
@@ -60,7 +60,7 @@ public class WingpanelMonitor.Indicator : Wingpanel.Indicator {
 
     public override Gtk.Widget ? get_widget () {
         if (popover_widget == null) {
-            popover_widget = null;
+            popover_widget = new PopoverWidget ();
         }
 
         return popover_widget;
