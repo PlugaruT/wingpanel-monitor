@@ -63,7 +63,7 @@ public class WingpanelMonitor.Indicator : Wingpanel.Indicator {
 
     public override Gtk.Widget ? get_widget () {
         if (popover_widget == null) {
-            popover_widget = new PopoverWidget ();
+            popover_widget = new PopoverWidget (settings);
         }
 
         return popover_widget;

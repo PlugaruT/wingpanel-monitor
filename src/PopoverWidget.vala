@@ -23,7 +23,12 @@ namespace WingpanelMonitor {
     public class PopoverWidget : Gtk.Grid {
         private PopoverWidgetRow cpu_freq;
         private PopoverWidgetRow uptime;
+        public unowned Settings settings { get; construct set; }
 
+        public PopoverWidget (Settings settings) {
+            Object (settings: settings);
+        }
+        
         construct {
             orientation = Gtk.Orientation.VERTICAL;
             column_spacing = 4;
@@ -43,6 +48,9 @@ namespace WingpanelMonitor {
 
             var hide_button = new Gtk.ModelButton ();
             hide_button.text = _ ("Hide Indicator");
+            hide_button.clicked.connect ( () => {
+                settings.set_value ("display-indicator", false); 
+            });
 
             var title_label = new Gtk.Label ("Wingpanel Monitor");
             title_label.halign = Gtk.Align.CENTER;
