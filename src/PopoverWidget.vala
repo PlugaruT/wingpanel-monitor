@@ -25,6 +25,8 @@ namespace WingpanelMonitor {
         private PopoverWidgetRow uptime;
         private PopoverWidgetRow network_down;
         private PopoverWidgetRow network_up;
+        private PopoverWidgetRow ram;
+        private PopoverWidgetRow swap;
         
         
         public unowned Settings settings { get; construct set; }
@@ -41,6 +43,8 @@ namespace WingpanelMonitor {
             uptime = new PopoverWidgetRow ("Uptime", "0", 4);
             network_down = new PopoverWidgetRow ("Network Down", "0", 4);
             network_up = new PopoverWidgetRow ("Network Up", "0", 4);
+            ram = new PopoverWidgetRow ("RAM", "0", 4);
+            swap = new PopoverWidgetRow ("Swap", "0", 4);
 
             var settings_button = new Gtk.ModelButton ();
             settings_button.text = _ ("Open Settings…");
@@ -69,6 +73,8 @@ namespace WingpanelMonitor {
             add (title_label);
             add (new Wingpanel.Widgets.Separator ());
             add (cpu_freq);
+            add (ram);
+            add (swap);
             add (uptime);
             add (network_down);
             add (network_up);
@@ -86,9 +92,21 @@ namespace WingpanelMonitor {
             uptime.label_value = val;
         }
         
+        public void update_ram (double used_ram, double total_ram) {
+            var used = Utils.format_size (used_ram);
+            var total = Utils.format_size (total_ram);
+            ram.label_value = "%s / %s".printf (used, total);
+        }
+        
+        public void update_swap (double used_swap, double total_swap) {
+            var used = Utils.format_size (used_swap);
+            var total = Utils.format_size (total_swap);
+            swap.label_value = "%s / %s".printf (used, total);
+        }
+        
         public void update_network (int upload, int download) {
-            network_down.label_value = WingpanelMonitor.Utils.format_net_speed (upload, true, false);
-            network_up.label_value = WingpanelMonitor.Utils.format_net_speed (download, true, false);
+            network_down.label_value = Utils.format_net_speed (upload, true, false);
+            network_up.label_value = Utils.format_net_speed (download, true, false);
         }
     }
 }

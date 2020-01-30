@@ -93,6 +93,8 @@ public class WingpanelMonitor.Indicator : Wingpanel.Indicator {
         if (popover_widget == null) return;
         popover_widget.update_cpu_frequency (cpu_data.frequency);
         popover_widget.update_uptime (system_data.uptime);
+        popover_widget.update_ram (memory_data.used, memory_data.total);
+        popover_widget.update_swap (memory_data.used_swap, memory_data.total_swap);
         var net = network_data.get_bytes ();
         popover_widget.update_network (net[0], net[1]);
     }
