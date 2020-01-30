@@ -23,6 +23,10 @@ namespace WingpanelMonitor {
     public class PopoverWidget : Gtk.Grid {
         private PopoverWidgetRow cpu_freq;
         private PopoverWidgetRow uptime;
+        private PopoverWidgetRow network_down;
+        private PopoverWidgetRow network_up;
+        
+        
         public unowned Settings settings { get; construct set; }
 
         public PopoverWidget (Settings settings) {
@@ -35,6 +39,8 @@ namespace WingpanelMonitor {
 
             cpu_freq = new PopoverWidgetRow ("Frequency", "0", 4);
             uptime = new PopoverWidgetRow ("Uptime", "0", 4);
+            network_down = new PopoverWidgetRow ("Network Down", "0", 4);
+            network_up = new PopoverWidgetRow ("Network Up", "0", 4);
 
             var settings_button = new Gtk.ModelButton ();
             settings_button.text = _ ("Open Settings…");
@@ -64,6 +70,8 @@ namespace WingpanelMonitor {
             add (new Wingpanel.Widgets.Separator ());
             add (cpu_freq);
             add (uptime);
+            add (network_down);
+            add (network_up);
             add (new Wingpanel.Widgets.Separator ());
             add (hide_button);
             add (settings_button);
@@ -76,6 +84,11 @@ namespace WingpanelMonitor {
 
         public void update_uptime (string val) {
             uptime.label_value = val;
+        }
+        
+        public void update_network (int upload, int download) {
+            network_down.label_value = WingpanelMonitor.Utils.format_net_speed (upload, true, false);
+            network_up.label_value = WingpanelMonitor.Utils.format_net_speed (download, true, false);
         }
     }
 }
