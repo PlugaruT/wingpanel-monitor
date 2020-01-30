@@ -24,9 +24,11 @@ public class WingpanelMonitor.Indicator : Wingpanel.Indicator {
 
     private DisplayWidget display_widget;
     private PopoverWidget popover_widget;
+
     private CPU cpu_data;
     private Memory memory_data;
     private Network network_data;
+    private System system_data;
 
     private static GLib.Settings settings;
 
@@ -42,6 +44,7 @@ public class WingpanelMonitor.Indicator : Wingpanel.Indicator {
         cpu_data = new CPU ();
         memory_data = new Memory ();
         network_data = new Network ();
+        system_data = new System ();
 
         settings = new GLib.Settings ("com.github.plugarut.wingpanel-monitor");
 
@@ -79,9 +82,17 @@ public class WingpanelMonitor.Indicator : Wingpanel.Indicator {
                 display_widget.update_memory (memory_data.percentage_used);
                 var net = network_data.get_bytes ();
                 display_widget.update_network (net[0], net[1]);
+
+                update_popover_widget_data ();
                 return true;
             });
         }
+    }
+
+    private void update_popover_widget_data () {
+        if (popover_widget == null) return;
+        popover_widget.update_cpu_frequency (cpu_data.frequency);
+        popover_widget.update_uptime (system_data.uptime);
     }
 }
 

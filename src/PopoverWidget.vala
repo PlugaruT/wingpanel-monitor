@@ -21,29 +21,52 @@
 
 namespace WingpanelMonitor {
     public class PopoverWidget : Gtk.Grid {
+        private PopoverWidgetRow cpu_freq;
+        private PopoverWidgetRow uptime;
+
         construct {
+            orientation = Gtk.Orientation.VERTICAL;
             column_spacing = 4;
-            margin_top = 4;
+
+            cpu_freq = new PopoverWidgetRow ("Frequency", "0", 4);
+            uptime = new PopoverWidgetRow ("Uptime", "0", 4);
 
             var settings_button = new Gtk.ModelButton ();
-            settings_button.text = _ ("Open Settings");
-            settings_button.get_style_context ().add_class ("menuitem");
-            settings_button.get_style_context ().remove_class ("button");
+            settings_button.text = _ ("Open Settings…");
             settings_button.clicked.connect (() => {
                 try {
-                    AppInfo.launch_default_for_uri ("com.github.plugarut.wingpanel-monitor", null);
+                    AppInfo.launch_default_for_uri ("application://com.github.plugarut.pwned-checker", null);
                 } catch (Error e) {
                     warning ("%s\n", e.message);
                 }
             });
 
+            var hide_button = new Gtk.ModelButton ();
+            hide_button.text = _ ("Hide Indicator");
 
-            var separator_start = new Wingpanel.Widgets.Separator ();
-            separator_start.hexpand = true;
+            var title_label = new Gtk.Label ("Wingpanel Monitor");
+            title_label.halign = Gtk.Align.CENTER;
+            title_label.hexpand = true;
+            title_label.margin_start = 9;
+            title_label.get_style_context ().add_class (Granite.STYLE_CLASS_H3_LABEL);
 
-            attach (separator_start, 0, 0, 1, 1);
-            attach (settings_button,     0, 1, 1, 1);
 
+            add (title_label);
+            add (new Wingpanel.Widgets.Separator ());
+            add (cpu_freq);
+            add (uptime);
+            add (new Wingpanel.Widgets.Separator ());
+            add (hide_button);
+            add (settings_button);
+        }
+
+        public void update_cpu_frequency (double val) {
+            var formated_value = Utils.format_frequency (val);
+            cpu_freq.label_value = formated_value;
+        }
+
+        public void update_uptime (string val) {
+            uptime.label_value = val;
         }
     }
 }

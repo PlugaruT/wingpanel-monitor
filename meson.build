@@ -53,6 +53,8 @@ shared_module(
     'src/Memory.vala',
     'src/Network.vala',
     'src/Utils.vala',
+    'src/PopoverWidgetRow.vala',
+    'src/System.vala',
     icons_gresource,
     dependencies: [
         dependency('gee-0.8'),
