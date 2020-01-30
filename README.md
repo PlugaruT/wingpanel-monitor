@@ -4,6 +4,10 @@
 
 This application is supposed to replace [this indicator](https://github.com/PlugaruT/wingpanel-indicator-sys-monitor). It is still a **WIP!**
 
+![Screenshot](data/screenshot_1.png)
+![Screenshot](data/screenshot_2.png)
+
+
 ## Building and Installation
 
 You'll need the following dependencies:
