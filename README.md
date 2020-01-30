@@ -2,7 +2,10 @@
 
 [![Build Status](https://travis-ci.org/PlugaruT/wingpanel-monitor.svg?branch=master)](https://travis-ci.org/PlugaruT/wingpanel-monitor)
 
-This application is supposed to replace [this indicator](https://github.com/PlugaruT/wingpanel-indicator-sys-monitor). It is still a **WIP!**
+<p align="center">
+  <a href="https://appcenter.elementary.io/com.github.plugarut.wingpanel-monitor"><img src="https://appcenter.elementary.io/badge.svg" alt="Get it on AppCenter" /></a>
+</p>
+
 
 ![Screenshot](data/screenshot_1.png)
 ![Screenshot](data/screenshot_2.png)
