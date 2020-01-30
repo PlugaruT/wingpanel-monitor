@@ -40,7 +40,8 @@ namespace WingpanelMonitor {
             settings_button.text = _ ("Open Settings…");
             settings_button.clicked.connect (() => {
                 try {
-                    AppInfo.launch_default_for_uri ("application://com.github.plugarut.pwned-checker", null);
+                    var appinfo = AppInfo.create_from_commandline ("com.github.plugarut.wingpanel-monitor", null, AppInfoCreateFlags.NONE);
+                    appinfo.launch (null, null);
                 } catch (Error e) {
                     warning ("%s\n", e.message);
                 }
