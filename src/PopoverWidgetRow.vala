@@ -29,13 +29,12 @@ public class WingpanelMonitor.PopoverWidgetRow : Gtk.Grid {
 
     public PopoverWidgetRow (string text, string val="", int char_width) {
         hexpand = true;
-        margin_start = 6;
+        margin = 6;
 
         text_label = new Gtk.Label (text);
         text_label.halign = Gtk.Align.START;
         text_label.hexpand = true;
         text_label.margin_start = 9;
-        text_label.get_style_context ().add_class (Granite.STYLE_CLASS_H4_LABEL);
 
         value_label = new Gtk.Label (val);
         value_label.halign = Gtk.Align.END;
