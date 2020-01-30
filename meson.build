@@ -49,7 +49,7 @@ shared_module(
     'src/DisplayWidget.vala',
     'src/PopoverWidget.vala',
     'src/IndicatorWidget.vala',
-    'src/cpu.vala',
+    'src/Cpu.vala',
     'src/Memory.vala',
     'src/Network.vala',
     'src/Utils.vala',
