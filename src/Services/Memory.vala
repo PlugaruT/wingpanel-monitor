@@ -19,63 +19,65 @@
  * Authored by: Tudor Plugaru <plugaru.tudor@gmail.com>
  */
 
-public class WingpanelMonitor.Memory  : GLib.Object {
-    private int _percentage_used;
-    private double _total;
-    private double _used;
+namespace WingpanelMonitor {
+    public class Memory  : GLib.Object {
+        private int _percentage_used;
+        private double _total;
+        private double _used;
 
-    private double _used_swap;
-    private double _total_swap;
+        private double _used_swap;
+        private double _total_swap;
 
-    public int percentage_used {
-        get { update_percentage_used (); return _percentage_used; }
-    }
-    public double total {
-        get { update_total (); return _total; }
-    }
-    public double used {
-        get { update_used (); return _used; }
-    }
+        public int percentage_used {
+            get { update_percentage_used (); return _percentage_used; }
+        }
+        public double total {
+            get { update_total (); return _total; }
+        }
+        public double used {
+            get { update_used (); return _used; }
+        }
 
-    public double used_swap {
-        get { update_used_swap (); return _used_swap; }
-    }
+        public double used_swap {
+            get { update_used_swap (); return _used_swap; }
+        }
 
-    public double total_swap {
-        get { update_total_swap (); return _total_swap; }
-    }
+        public double total_swap {
+            get { update_total_swap (); return _total_swap; }
+        }
 
-    public Memory () {
-        this._percentage_used = 0;
-        this._used = 0;
-        this._total = 0;
-    }
+        public Memory () {
+            this._percentage_used = 0;
+            this._used = 0;
+            this._total = 0;
+        }
 
-    private void update_percentage_used () {
-        _percentage_used = (int)Math.round ((used / total) * 100);
-    }
+        private void update_percentage_used () {
+            _percentage_used = (int)Math.round ((used / total) * 100);
+        }
 
-    private void update_total () {
-        GTop.Memory memory;
-        GTop.get_mem (out memory);
-        _total = (double)memory.total;
-    }
+        private void update_total () {
+            GTop.Memory memory;
+            GTop.get_mem (out memory);
+            _total = (double)memory.total;
+        }
 
-    private void update_used () {
-        GTop.Memory memory;
-        GTop.get_mem (out memory);
-        _used = (double)memory.user;
-    }
+        private void update_used () {
+            GTop.Memory memory;
+            GTop.get_mem (out memory);
+            _used = (double)memory.user;
+        }
 
-    private void update_used_swap () {
-        GTop.Swap swap;
-        GTop.get_swap (out swap);
-        _used_swap = (double)swap.used;
-    }
+        private void update_used_swap () {
+            GTop.Swap swap;
+            GTop.get_swap (out swap);
+            _used_swap = (double)swap.used;
+        }
 
-    private void update_total_swap () {
-        GTop.Swap swap;
-        GTop.get_swap (out swap);
-        _total_swap = (double)swap.total;
+        private void update_total_swap () {
+            GTop.Swap swap;
+            GTop.get_swap (out swap);
+            _total_swap = (double)swap.total;
+        }
     }
 }

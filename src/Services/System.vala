@@ -19,22 +19,24 @@
  * Authored by: Tudor Plugaru <plugaru.tudor@gmail.com>
  */
 
-public class WingpanelMonitor.System  : GLib.Object {
-    private string _uptime;
+namespace WingpanelMonitor {
+    public class System  : GLib.Object {
+        private string _uptime;
 
-    public string uptime {
-        get { update_uptime (); return _uptime; }
-    }
+        public string uptime {
+            get { update_uptime (); return _uptime; }
+        }
 
-    public System () {
-    }
+        public System () {
+        }
 
-    construct { }
+        construct { }
 
-    private void update_uptime () {
-        GTop.Uptime uptime;
-        GTop.get_uptime (out uptime);
+        private void update_uptime () {
+            GTop.Uptime uptime;
+            GTop.get_uptime (out uptime);
 
-        _uptime = Granite.DateTime.seconds_to_time ((int)uptime.uptime);
+            _uptime = Granite.DateTime.seconds_to_time ((int)uptime.uptime);
+        }
     }
 }

@@ -19,31 +19,32 @@
  * Authored by: Tudor Plugaru <plugaru.tudor@gmail.com>
  */
 
-public class WingpanelMonitor.PopoverWidgetRow : Gtk.Grid {
-    private Gtk.Label text_label;
-    private Gtk.Label value_label;
+namespace WingpanelMonitor {
+    public class PopoverWidgetRow : Gtk.Grid {
+        private Gtk.Label text_label;
+        private Gtk.Label value_label;
 
-    public string label_value {
-        set { value_label.label = value; }
-    }
+        public string label_value {
+            set { value_label.label = value; }
+        }
 
-    public PopoverWidgetRow (string text, string val="", int char_width) {
-        hexpand = true;
-        margin = 6;
+        public PopoverWidgetRow (string text, string val="", int char_width) {
+            hexpand = true;
+            margin = 6;
 
-        text_label = new Gtk.Label (text);
-        text_label.halign = Gtk.Align.START;
-        text_label.hexpand = true;
-        text_label.margin_start = 9;
+            text_label = new Gtk.Label (text);
+            text_label.halign = Gtk.Align.START;
+            text_label.hexpand = true;
+            text_label.margin_start = 9;
 
-        value_label = new Gtk.Label (val);
-        value_label.halign = Gtk.Align.END;
-        value_label.set_width_chars (char_width);
-        value_label.set_justify (Gtk.Justification.FILL);
-        value_label.margin_end = 9;
+            value_label = new Gtk.Label (val);
+            value_label.halign = Gtk.Align.END;
+            value_label.set_width_chars (char_width);
+            value_label.set_justify (Gtk.Justification.FILL);
+            value_label.margin_end = 9;
 
-        add (text_label);
-        add (value_label);
+            add (text_label);
+            add (value_label);
+        }
     }
 }
-
