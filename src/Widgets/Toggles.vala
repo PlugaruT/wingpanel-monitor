@@ -27,15 +27,14 @@ namespace WingpanelMonitor {
 
         private Wingpanel.Widgets.Switch indicator;
 
-        public static GLib.Settings settings;
+        public unowned Settings settings { get; construct set; }
 
-        public TogglesWidget () {
-            hexpand = true;
+        public TogglesWidget (Settings settings) {
+            Object (settings: settings, hexpand: true);
         }
 
         construct {
             orientation = Gtk.Orientation.VERTICAL;
-            settings = new GLib.Settings ("com.github.plugarut.wingpanel-monitor");
 
             cpu_switch = new Wingpanel.Widgets.Switch ("CPU usage", settings.get_boolean ("show-cpu"));
             ram_switch = new Wingpanel.Widgets.Switch ("RAM usage", settings.get_boolean ("show-ram"));
