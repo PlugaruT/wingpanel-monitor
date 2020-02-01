@@ -26,7 +26,7 @@ executable(
     meson.project_name(),
     'src/Application.vala',
     'src/MainWindow.vala',
-    'src/Toggles.vala',
+    'src/Widgets/Toggles.vala',
     dependencies: [
         dependency('gee-0.8'),
         dependency('glib-2.0'),
@@ -46,10 +46,10 @@ executable(
 shared_module(
     'wingpanel-monitor',
     'src/Indicator.vala',
-    'src/DisplayWidget.vala',
-    'src/PopoverWidget.vala',
-    'src/IndicatorWidget.vala',
-    'src/PopoverWidgetRow.vala',
+    'src/Widgets/DisplayWidget.vala',
+    'src/Widgets/PopoverWidget.vala',
+    'src/Widgets/IndicatorWidget.vala',
+    'src/Widgets/PopoverWidgetRow.vala',
     'src/Services/Cpu.vala',
     'src/Services/Memory.vala',
     'src/Services/Network.vala',
