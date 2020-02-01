@@ -19,7 +19,7 @@
  * Authored by: Tudor Plugaru <plugaru.tudor@gmail.com>
  */
 namespace WingpanelMonitor {
-    public class Network  : GLib.Object {
+    public class Network : GLib.Object {
         private int _bytes_in;
         private int _bytes_in_old;
         private bool control;
@@ -39,7 +39,7 @@ namespace WingpanelMonitor {
             if (control == false) {
                 control = true;
                 update_bytes_total ();
-            } else  {
+            } else {
                 control = false;
             }
             int[] ret;

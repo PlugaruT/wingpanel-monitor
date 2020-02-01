@@ -26,7 +26,7 @@ namespace WingpanelMonitor {
         construct {
             var icon = new Gtk.Image.from_icon_name (icon_name, Gtk.IconSize.SMALL_TOOLBAR);
 
-            var group = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
+            var group = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
 
             label = new Gtk.Label ("N/A");
             label.set_width_chars (char_width);
@@ -34,11 +34,11 @@ namespace WingpanelMonitor {
             group.pack_start (icon);
             group.pack_start (label);
 
-            widget_revealer = new Gtk.Revealer();
+            widget_revealer = new Gtk.Revealer ();
             widget_revealer.transition_type = Gtk.RevealerTransitionType.SLIDE_RIGHT;
             widget_revealer.reveal_child = true;
 
-            widget_revealer.add(group);
+            widget_revealer.add (group);
 
             pack_start (widget_revealer);
         }

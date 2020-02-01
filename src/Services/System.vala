@@ -20,7 +20,7 @@
  */
 
 namespace WingpanelMonitor {
-    public class System  : GLib.Object {
+    public class System : GLib.Object {
         private string _uptime;
 
         public string uptime {

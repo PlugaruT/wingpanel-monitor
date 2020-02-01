@@ -33,21 +33,21 @@ namespace WingpanelMonitor {
         public static GLib.Settings settings;
 
         public TogglesWidget () {
-            orientation = Gtk.Orientation.HORIZONTAL;
             hexpand = true;
         }
 
         construct {
+            orientation = Gtk.Orientation.VERTICAL;
             settings = new GLib.Settings ("com.github.plugarut.wingpanel-monitor");
 
-            cpu_switch = new Wingpanel.Widgets.Switch ("CPU usage", settings.get_boolean("show-cpu"));
-            ram_switch = new Wingpanel.Widgets.Switch ("RAM usage", settings.get_boolean("show-ram"));
-            network_switch = new Wingpanel.Widgets.Switch ("Network usage", settings.get_boolean("show-network"));
-            label_description_switch = new Wingpanel.Widgets.Switch ("Labels", settings.get_boolean("show-desr"));
-            graph_switch = new Wingpanel.Widgets.Switch ("Graphs", settings.get_boolean("show-graph"));
-            indicator_icon_switch = new Wingpanel.Widgets.Switch ("Indicator icon", settings.get_boolean("show-icon"));
+            cpu_switch = new Wingpanel.Widgets.Switch ("CPU usage", settings.get_boolean ("show-cpu"));
+            ram_switch = new Wingpanel.Widgets.Switch ("RAM usage", settings.get_boolean ("show-ram"));
+            network_switch = new Wingpanel.Widgets.Switch ("Network usage", settings.get_boolean ("show-network"));
+            label_description_switch = new Wingpanel.Widgets.Switch ("Labels", settings.get_boolean ("show-desr"));
+            graph_switch = new Wingpanel.Widgets.Switch ("Graphs", settings.get_boolean ("show-graph"));
+            indicator_icon_switch = new Wingpanel.Widgets.Switch ("Indicator icon", settings.get_boolean ("show-icon"));
 
-            indicator = new Wingpanel.Widgets.Switch ("ON/OFF", settings.get_boolean("display-indicator"));
+            indicator = new Wingpanel.Widgets.Switch ("ON/OFF", settings.get_boolean ("display-indicator"));
 
             var separator_start = new Wingpanel.Widgets.Separator ();
             separator_start.hexpand = true;
@@ -70,16 +70,14 @@ namespace WingpanelMonitor {
             settings.bind ("show-graph", graph_switch.get_switch (), "active", SettingsBindFlags.DEFAULT);
             settings.bind ("show-icon", indicator_icon_switch.get_switch (), "active", SettingsBindFlags.DEFAULT);
 
-            attach (indicator,                  0, 1, 1, 1);
-            attach (separator_start,            0, 2, 1, 1);
-            attach (cpu_switch,                 0, 3, 1, 1);
-            attach (ram_switch,                 0, 4, 1, 1);
-            attach (network_switch,             0, 5, 1, 1);
-            // attach (label_description_switch,   0, 6, 1, 1);
-            // attach (graph_switch,               0, 7, 1, 1);
-            // attach (indicator_icon_switch,      0, 8, 1, 1);
-            attach (separator_end,              0, 6, 1, 1);
-            attach (minimize_button,            0, 7, 1, 1);
+
+            add (indicator);
+            add (new Wingpanel.Widgets.Separator ());
+            add (cpu_switch);
+            add (ram_switch);
+            add (network_switch);
+            add (new Wingpanel.Widgets.Separator ());
+            add (minimize_button);
         }
     }
 }

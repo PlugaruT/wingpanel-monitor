@@ -49,7 +49,7 @@ namespace WingpanelMonitor {
 
             settings = new GLib.Settings ("com.github.plugarut.wingpanel-monitor");
 
-            visible = settings.get_boolean("display-indicator");
+            visible = settings.get_boolean ("display-indicator");
 
             settings.bind ("display-indicator", this, "visible", SettingsBindFlags.DEFAULT);
         }

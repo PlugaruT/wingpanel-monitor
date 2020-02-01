@@ -20,7 +20,7 @@
  */
 
 namespace WingpanelMonitor {
-    public class Memory  : GLib.Object {
+    public class Memory : GLib.Object {
         private int _percentage_used;
         private double _total;
         private double _used;

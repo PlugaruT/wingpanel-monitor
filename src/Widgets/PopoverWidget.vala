@@ -27,14 +27,14 @@ namespace WingpanelMonitor {
         private PopoverWidgetRow network_up;
         private PopoverWidgetRow ram;
         private PopoverWidgetRow swap;
-        
-        
+
+
         public unowned Settings settings { get; construct set; }
 
         public PopoverWidget (Settings settings) {
             Object (settings: settings);
         }
-        
+
         construct {
             orientation = Gtk.Orientation.VERTICAL;
             column_spacing = 4;
@@ -50,7 +50,9 @@ namespace WingpanelMonitor {
             settings_button.text = _ ("Open Settings…");
             settings_button.clicked.connect (() => {
                 try {
-                    var appinfo = AppInfo.create_from_commandline ("com.github.plugarut.wingpanel-monitor", null, AppInfoCreateFlags.NONE);
+                    var appinfo = AppInfo.create_from_commandline (
+                        "com.github.plugarut.wingpanel-monitor", null, AppInfoCreateFlags.NONE
+                        );
                     appinfo.launch (null, null);
                 } catch (Error e) {
                     warning ("%s\n", e.message);
@@ -60,7 +62,7 @@ namespace WingpanelMonitor {
             var hide_button = new Gtk.ModelButton ();
             hide_button.text = _ ("Hide Indicator");
             hide_button.clicked.connect ( () => {
-                settings.set_value ("display-indicator", false); 
+                settings.set_value ("display-indicator", false);
             });
 
             var title_label = new Gtk.Label ("Wingpanel Monitor");
@@ -91,23 +93,22 @@ namespace WingpanelMonitor {
         public void update_uptime (string val) {
             uptime.label_value = val;
         }
-        
+
         public void update_ram (double used_ram, double total_ram) {
             var used = Utils.format_size (used_ram);
             var total = Utils.format_size (total_ram);
             ram.label_value = "%s / %s".printf (used, total);
         }
-        
+
         public void update_swap (double used_swap, double total_swap) {
             var used = Utils.format_size (used_swap);
             var total = Utils.format_size (total_swap);
             swap.label_value = "%s / %s".printf (used, total);
         }
-        
+
         public void update_network (int upload, int download) {
             network_down.label_value = Utils.format_net_speed (upload, true, false);
             network_up.label_value = Utils.format_net_speed (download, true, false);
         }
     }
 }
-
