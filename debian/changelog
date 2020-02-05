@@ -1,5 +1,5 @@
-wingpanel-monitor (0.0.1) bionic; urgency=medium
+wingpanel-monitor (0.1.0) bionic; urgency=medium
 
   * Initial release.
 
- -- Tudor Plugaru <plugaru.tudor@gmail.com>  Wed, 29 Jan 2020
+ -- Tudor Plugaru <plugaru.tudor@gmail.com>  Wed, 05 Feb 2020

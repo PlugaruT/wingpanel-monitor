@@ -8,23 +8,24 @@
   <description>
     <p>Display usage of system resources in Wingpanel.</p>
   </description>
-    <custom>
-     <value key="x-appcenter-color-primary">#d7f4d7</value>
-     <value key="x-appcenter-color-primary-text">#242d40</value>
+  <custom>
      <value key="x-appcenter-suggested-price">0</value>
   </custom>
     <screenshots>
     <screenshot type="default">
-      <image>https://github.com/plugarut/wingpanel-monitor/raw/master/data/com.github.plugarut.wingpanel-monitor.screenshot.png</image>
+      <image>https://github.com/plugarut/wingpanel-monitor/raw/master/data/screenshot_1.png</image>
+    </screenshot>
+        <screenshot type="default">
+      <image>https://github.com/plugarut/wingpanel-monitor/raw/master/data/screenshot_2.png</image>
     </screenshot>
   </screenshots>
-  <developer_name>Stanisław Dac</developer_name>
+  <developer_name>Tudor Plugaru</developer_name>
   <url type="homepage">https://github.com/plugarut/wingpanel-monitor</url>
   <url type="bugtracker">https://github.com/plugarut/wingpanel-monitor/issues</url>
 <url type="help">https://github.com/plugarut/wingpanel-monitor/issues</url>
 
 <releases>
-    <release version="0.0.1" date="2020-01-29">
+    <release version="0.1.0" date="2020-02-05">
 ​      <description>
 ​         <ul>
            <li>Initial release</li>
