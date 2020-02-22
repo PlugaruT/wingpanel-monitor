@@ -56,7 +56,7 @@ namespace WingpanelMonitor {
 
         public override Gtk.Widget get_display_widget () {
             if (display_widget == null) {
-                display_widget = new DisplayWidget ();
+                display_widget = new DisplayWidget (settings);
                 update_display_widget_data ();
             }
             return display_widget;

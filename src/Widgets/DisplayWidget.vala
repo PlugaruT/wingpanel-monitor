@@ -22,16 +22,20 @@
 
 namespace WingpanelMonitor {
     public class DisplayWidget : Gtk.Grid {
-        private GLib.Settings settings;
         private IndicatorWidget cpu_info;
         private IndicatorWidget ram_info;
         private IndicatorWidget upload_info;
         private IndicatorWidget download_info;
+        
+        public unowned Settings settings { get; construct set; }
 
+        public DisplayWidget (Settings settings) {
+            Object (settings: settings);
+        }
+        
         construct {
             valign = Gtk.Align.CENTER;
             margin_top = 4;
-            settings = new GLib.Settings ("com.github.plugarut.wingpanel-monitor");
 
 
             cpu_info = new IndicatorWidget ("cpu-symbolic", 4);
