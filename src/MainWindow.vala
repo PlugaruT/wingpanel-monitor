@@ -44,7 +44,8 @@ namespace WingpanelMonitor {
             
             weather_info = new GWeather.Info (location);
 
-            var refresh_btn = new Gtk.Button.with_label ("Click");
+            var refresh_btn = new Gtk.Button.from_icon_name ("view-refresh-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+            refresh_btn.tooltip_text = "Refresh weather";
             refresh_btn.clicked.connect(()=> {
                 weather_info.update ();
             });
@@ -73,16 +74,20 @@ namespace WingpanelMonitor {
                 weather_info.update ();
             });
             
+            settings.changed["weather-refresh"].connect(()=>{
+                weather_info.update ();
+            });
+
             weather_info.updated.connect(() => {
+                if (location == null) {
+                    return;
+                }
                 double temp;
                 weather_info.get_value_temp (GWeather.TemperatureUnit.DEFAULT, out temp);
                 int t = (int) temp;
                 settings.set_string("weather-temperature", "%s°".printf(t.to_string()));
                 settings.set_string("weather-icon", weather_info.get_symbolic_icon_name ());
                 settings.set_string("weather-location", dgettext("libgweather-locations", location.get_city_name ()));
-                warning ("icon %s", settings.get_string("weather-icon"));
-                warning ("city %s", settings.get_string("weather-location"));
-                warning ("tempterature %s", settings.get_string("weather-temperature"));
             });
             
         }

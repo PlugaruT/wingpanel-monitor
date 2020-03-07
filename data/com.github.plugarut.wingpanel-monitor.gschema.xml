@@ -50,5 +50,15 @@
       <summary>Current location for weather</summary>
       <description></description>
     </key>
+    <key type="d" name="weather-refresh-rate">
+      <default>30</default>
+      <summary>Refresh rate of weather info, in minutes</summary>
+      <description></description>
+    </key>
+    <key type="b" name="weather-refresh">
+      <default>true</default>
+      <summary>Value that is tracked by the settings app to know when to refresh weather info</summary>
+      <description></description>
+    </key>
   </schema>
 </schemalist>
