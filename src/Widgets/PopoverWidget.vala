@@ -86,7 +86,7 @@ namespace WingpanelMonitor {
                 warning ("%s\n", e.message);
             }
         }
-        
+
         public void update_cpu_frequency (double val) {
             var formated_value = Utils.format_frequency (val);
             cpu_freq.label_value = formated_value;

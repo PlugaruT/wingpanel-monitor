@@ -40,7 +40,9 @@ namespace WingpanelMonitor {
             cpu_switch = new Wingpanel.Widgets.Switch ("CPU usage", settings.get_boolean ("show-cpu"));
             ram_switch = new Wingpanel.Widgets.Switch ("RAM usage", settings.get_boolean ("show-ram"));
             network_switch = new Wingpanel.Widgets.Switch ("Network usage", settings.get_boolean ("show-network"));
-            workspace_switch = new Wingpanel.Widgets.Switch ("Workspace number", settings.get_boolean ("show-workspace"));
+            workspace_switch = new Wingpanel.Widgets.Switch (
+                "Workspace number", settings.get_boolean ("show-workspace")
+                );
 
             indicator = new Wingpanel.Widgets.Switch ("ON/OFF", settings.get_boolean ("display-indicator"));
 

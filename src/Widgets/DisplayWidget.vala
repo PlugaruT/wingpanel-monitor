@@ -27,13 +27,13 @@ namespace WingpanelMonitor {
         private IndicatorWidget upload_info;
         private IndicatorWidget download_info;
         private IndicatorWidget workspace_info;
-        
+
         public unowned Settings settings { get; construct set; }
 
         public DisplayWidget (Settings settings) {
             Object (settings: settings);
         }
-        
+
         construct {
             valign = Gtk.Align.CENTER;
             margin_top = 4;
@@ -50,14 +50,14 @@ namespace WingpanelMonitor {
             settings.bind ("show-network", upload_info, "display", SettingsBindFlags.GET);
             settings.bind ("show-network", download_info, "display", SettingsBindFlags.GET);
             settings.bind ("show-workspace", workspace_info, "display", SettingsBindFlags.GET);
-            
+
             add (cpu_info);
             add (ram_info);
             add (upload_info);
             add (download_info);
             add (workspace_info);
         }
-        
+
         public void update_workspace (int val) {
             workspace_info.label_value = val.to_string ();
         }
