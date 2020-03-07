@@ -21,6 +21,9 @@
 
 namespace WingpanelMonitor {
     public class MainWindow : Gtk.Window {
+        private GLib.Settings settings;
+        private GWeather.Location location;
+        private GWeather.Info weather_info;
 
         public MainWindow (Gtk.Application application) {
             Object (
@@ -34,8 +37,17 @@ namespace WingpanelMonitor {
         }
 
         construct {
-            var settings = new GLib.Settings ("com.github.plugarut.wingpanel-monitor");
+            settings = new GLib.Settings ("com.github.plugarut.wingpanel-monitor");
             var toggles = new TogglesWidget (settings);
+
+            get_location.begin ();
+            
+            weather_info = new GWeather.Info (location);
+
+            var refresh_btn = new Gtk.Button.with_label ("Click");
+            refresh_btn.clicked.connect(()=> {
+                weather_info.update ();
+            });
 
             var layout = new Gtk.Grid ();
             layout.hexpand = true;
@@ -47,6 +59,7 @@ namespace WingpanelMonitor {
 
             var header = new Gtk.HeaderBar ();
             header.show_close_button = true;
+            header.pack_end(refresh_btn);
 
             var header_context = header.get_style_context ();
             header_context.add_class ("titlebar");
@@ -55,6 +68,47 @@ namespace WingpanelMonitor {
 
             set_titlebar (header);
             add (layout);
+            
+            focus_in_event.connect (() => {
+                weather_info.update ();
+            });
+            
+            weather_info.updated.connect(() => {
+                double temp;
+                weather_info.get_value_temp (GWeather.TemperatureUnit.DEFAULT, out temp);
+                int t = (int) temp;
+                settings.set_string("weather-temperature", "%s°".printf(t.to_string()));
+                settings.set_string("weather-icon", weather_info.get_symbolic_icon_name ());
+                settings.set_string("weather-location", dgettext("libgweather-locations", location.get_city_name ()));
+                warning ("icon %s", settings.get_string("weather-icon"));
+                warning ("city %s", settings.get_string("weather-location"));
+                warning ("tempterature %s", settings.get_string("weather-temperature"));
+            });
+            
+        }
+        
+        public async void get_location () {
+            try {
+                var simple = yield new GClue.Simple ("com.github.plugarut.wingpanel-monitor", GClue.AccuracyLevel.CITY, null);
+    
+                simple.notify["location"].connect (() => {
+                    on_location_updated (simple.location.latitude, simple.location.longitude);
+                });
+    
+                on_location_updated (simple.location.latitude, simple.location.longitude);
+            } catch (Error e) {
+                warning ("Failed to connect to GeoClue2 service: %s", e.message);
+                return;
+            }
+        }
+        
+        public void on_location_updated (double latitude, double longitude) {
+            location = GWeather.Location.get_world ();
+            location = location.find_nearest_city (latitude, longitude);
+            if (location != null) {
+                weather_info.location = location;
+                weather_info.update ();
+            }
         }
 
     }

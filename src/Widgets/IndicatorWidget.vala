@@ -1,6 +1,7 @@
 namespace WingpanelMonitor {
     public class IndicatorWidget : Gtk.Box {
         private Gtk.Label label;
+        private Gtk.Image icon;
         private Gtk.Revealer widget_revealer;
 
         public string icon_name { get; construct; }
@@ -8,6 +9,12 @@ namespace WingpanelMonitor {
 
         public string label_value {
             set {label.label = value; }
+        }
+        
+        public string new_icon {
+            set {
+                icon.set_from_icon_name (value, Gtk.IconSize.SMALL_TOOLBAR);
+            }
         }
 
         public bool display {
@@ -24,7 +31,7 @@ namespace WingpanelMonitor {
         }
 
         construct {
-            var icon = new Gtk.Image.from_icon_name (icon_name, Gtk.IconSize.SMALL_TOOLBAR);
+            icon = new Gtk.Image.from_icon_name (icon_name, Gtk.IconSize.SMALL_TOOLBAR);
 
             var group = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
 
@@ -41,6 +48,6 @@ namespace WingpanelMonitor {
             widget_revealer.add (group);
 
             pack_start (widget_revealer);
-        }
+        }        
     }
 }

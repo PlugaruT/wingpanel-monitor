@@ -86,7 +86,7 @@ namespace WingpanelMonitor {
                     display_widget.update_memory (memory_data.percentage_used);
                     var net = network_data.get_bytes ();
                     display_widget.update_network (net[0], net[1]);
-
+                    display_widget.update_weather ();
                     update_popover_widget_data ();
                     return true;
                 });
