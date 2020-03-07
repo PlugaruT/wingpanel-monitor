@@ -48,16 +48,7 @@ namespace WingpanelMonitor {
 
             var settings_button = new Gtk.ModelButton ();
             settings_button.text = _ ("Open Settings…");
-            settings_button.clicked.connect (() => {
-                try {
-                    var appinfo = AppInfo.create_from_commandline (
-                        "com.github.plugarut.wingpanel-monitor", null, AppInfoCreateFlags.NONE
-                        );
-                    appinfo.launch (null, null);
-                } catch (Error e) {
-                    warning ("%s\n", e.message);
-                }
-            });
+            settings_button.clicked.connect (open_settings);
 
             var hide_button = new Gtk.ModelButton ();
             hide_button.text = _ ("Hide Indicator");
@@ -83,6 +74,17 @@ namespace WingpanelMonitor {
             add (new Wingpanel.Widgets.Separator ());
             add (hide_button);
             add (settings_button);
+        }
+
+        private void open_settings () {
+            try {
+                var appinfo = AppInfo.create_from_commandline (
+                    "com.github.plugarut.wingpanel-monitor", null, AppInfoCreateFlags.NONE
+                    );
+                appinfo.launch (null, null);
+            } catch (Error e) {
+                warning ("%s\n", e.message);
+            }
         }
 
         public void update_cpu_frequency (double val) {

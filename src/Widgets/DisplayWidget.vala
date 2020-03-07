@@ -22,32 +22,44 @@
 
 namespace WingpanelMonitor {
     public class DisplayWidget : Gtk.Grid {
-        private GLib.Settings settings;
         private IndicatorWidget cpu_info;
         private IndicatorWidget ram_info;
         private IndicatorWidget upload_info;
         private IndicatorWidget download_info;
+        private IndicatorWidget workspace_info;
+
+        public unowned Settings settings { get; construct set; }
+
+        public DisplayWidget (Settings settings) {
+            Object (settings: settings);
+        }
 
         construct {
             valign = Gtk.Align.CENTER;
             margin_top = 4;
-            settings = new GLib.Settings ("com.github.plugarut.wingpanel-monitor");
 
 
             cpu_info = new IndicatorWidget ("cpu-symbolic", 4);
             ram_info = new IndicatorWidget ("ram-symbolic", 4);
             upload_info = new IndicatorWidget ("go-up-symbolic", 8);
             download_info = new IndicatorWidget ("go-down-symbolic", 8);
+            workspace_info = new IndicatorWidget ("computer-symbolic", 2);
 
             settings.bind ("show-cpu", cpu_info, "display", SettingsBindFlags.GET);
             settings.bind ("show-ram", ram_info, "display", SettingsBindFlags.GET);
             settings.bind ("show-network", upload_info, "display", SettingsBindFlags.GET);
             settings.bind ("show-network", download_info, "display", SettingsBindFlags.GET);
+            settings.bind ("show-workspace", workspace_info, "display", SettingsBindFlags.GET);
 
             add (cpu_info);
             add (ram_info);
             add (upload_info);
             add (download_info);
+            add (workspace_info);
+        }
+
+        public void update_workspace (int val) {
+            workspace_info.label_value = val.to_string ();
         }
 
         public void update_cpu (int val) {

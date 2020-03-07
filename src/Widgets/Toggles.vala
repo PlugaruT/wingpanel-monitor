@@ -24,6 +24,7 @@ namespace WingpanelMonitor {
         private Wingpanel.Widgets.Switch cpu_switch;
         private Wingpanel.Widgets.Switch ram_switch;
         private Wingpanel.Widgets.Switch network_switch;
+        private Wingpanel.Widgets.Switch workspace_switch;
 
         private Wingpanel.Widgets.Switch indicator;
 
@@ -39,6 +40,9 @@ namespace WingpanelMonitor {
             cpu_switch = new Wingpanel.Widgets.Switch ("CPU usage", settings.get_boolean ("show-cpu"));
             ram_switch = new Wingpanel.Widgets.Switch ("RAM usage", settings.get_boolean ("show-ram"));
             network_switch = new Wingpanel.Widgets.Switch ("Network usage", settings.get_boolean ("show-network"));
+            workspace_switch = new Wingpanel.Widgets.Switch (
+                "Workspace number", settings.get_boolean ("show-workspace")
+                );
 
             indicator = new Wingpanel.Widgets.Switch ("ON/OFF", settings.get_boolean ("display-indicator"));
 
@@ -47,12 +51,14 @@ namespace WingpanelMonitor {
             settings.bind ("show-cpu", cpu_switch.get_switch (), "active", SettingsBindFlags.DEFAULT);
             settings.bind ("show-ram", ram_switch.get_switch (), "active", SettingsBindFlags.DEFAULT);
             settings.bind ("show-network", network_switch.get_switch (), "active", SettingsBindFlags.DEFAULT);
+            settings.bind ("show-workspace", workspace_switch.get_switch (), "active", SettingsBindFlags.DEFAULT);
 
             add (indicator);
             add (new Wingpanel.Widgets.Separator ());
             add (cpu_switch);
             add (ram_switch);
             add (network_switch);
+            add (workspace_switch);
             add (new Wingpanel.Widgets.Separator ());
         }
     }

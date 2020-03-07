@@ -30,6 +30,7 @@ namespace WingpanelMonitor {
         private Memory memory_data;
         private Network network_data;
         private System system_data;
+        private Gdk.X11.Screen screen;
 
         private static GLib.Settings settings;
 
@@ -46,6 +47,7 @@ namespace WingpanelMonitor {
             memory_data = new Memory ();
             network_data = new Network ();
             system_data = new System ();
+            screen = Gdk.Screen.get_default () as Gdk.X11.Screen;
 
             settings = new GLib.Settings ("com.github.plugarut.wingpanel-monitor");
 
@@ -56,7 +58,7 @@ namespace WingpanelMonitor {
 
         public override Gtk.Widget get_display_widget () {
             if (display_widget == null) {
-                display_widget = new DisplayWidget ();
+                display_widget = new DisplayWidget (settings);
                 update_display_widget_data ();
             }
             return display_widget;
@@ -79,6 +81,7 @@ namespace WingpanelMonitor {
         private void update_display_widget_data () {
             if (display_widget != null) {
                 Timeout.add_seconds (1, () => {
+                    display_widget.update_workspace ((int)screen.get_current_desktop () + 1);
                     display_widget.update_cpu (cpu_data.percentage_used);
                     display_widget.update_memory (memory_data.percentage_used);
                     var net = network_data.get_bytes ();

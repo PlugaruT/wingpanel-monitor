@@ -5,9 +5,9 @@
 </p>
 <h1 align="center">Wingpanel Monitor</h1>
 
-<p align="center">
+<!-- <p align="center">
   <a href="https://appcenter.elementary.io/com.github.plugarut.wingpanel-monitor"><img src="https://appcenter.elementary.io/badge.svg" alt="Get it on AppCenter" /></a>
-</p>
+</p> -->
 
 ![Screenshot](data/screenshot_1.png)
 
