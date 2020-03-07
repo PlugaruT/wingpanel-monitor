@@ -25,7 +25,7 @@ namespace WingpanelMonitor {
         private Wingpanel.Widgets.Switch ram_switch;
         private Wingpanel.Widgets.Switch network_switch;
         private Wingpanel.Widgets.Switch workspace_switch;
-
+        private Wingpanel.Widgets.Switch weather_switch;
         private Wingpanel.Widgets.Switch indicator;
 
         public unowned Settings settings { get; construct set; }
@@ -43,7 +43,10 @@ namespace WingpanelMonitor {
             workspace_switch = new Wingpanel.Widgets.Switch (
                 "Workspace number", settings.get_boolean ("show-workspace")
                 );
-
+            weather_switch = new Wingpanel.Widgets.Switch (
+                "Weather for %s".printf (settings.get_string ("weather-location")),
+                settings.get_boolean ("show-weather")
+                );
             indicator = new Wingpanel.Widgets.Switch ("ON/OFF", settings.get_boolean ("display-indicator"));
 
             settings.bind ("display-indicator", indicator.get_switch (), "active", SettingsBindFlags.DEFAULT);
@@ -52,6 +55,7 @@ namespace WingpanelMonitor {
             settings.bind ("show-ram", ram_switch.get_switch (), "active", SettingsBindFlags.DEFAULT);
             settings.bind ("show-network", network_switch.get_switch (), "active", SettingsBindFlags.DEFAULT);
             settings.bind ("show-workspace", workspace_switch.get_switch (), "active", SettingsBindFlags.DEFAULT);
+            settings.bind ("show-weather", weather_switch.get_switch (), "active", SettingsBindFlags.DEFAULT);
 
             add (indicator);
             add (new Wingpanel.Widgets.Separator ());
@@ -59,6 +63,7 @@ namespace WingpanelMonitor {
             add (ram_switch);
             add (network_switch);
             add (workspace_switch);
+            add (weather_switch);
             add (new Wingpanel.Widgets.Separator ());
         }
     }

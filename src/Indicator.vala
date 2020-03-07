@@ -60,6 +60,7 @@ namespace WingpanelMonitor {
             if (display_widget == null) {
                 display_widget = new DisplayWidget (settings);
                 update_display_widget_data ();
+                enable_weather_update ();
             }
             return display_widget;
         }
@@ -86,7 +87,7 @@ namespace WingpanelMonitor {
                     display_widget.update_memory (memory_data.percentage_used);
                     var net = network_data.get_bytes ();
                     display_widget.update_network (net[0], net[1]);
-
+                    display_widget.update_weather ();
                     update_popover_widget_data ();
                     return true;
                 });
@@ -101,6 +102,14 @@ namespace WingpanelMonitor {
             popover_widget.update_swap (memory_data.used_swap, memory_data.total_swap);
             var net = network_data.get_bytes ();
             popover_widget.update_network (net[0], net[1]);
+        }
+
+        private void enable_weather_update () {
+            Timeout.add_seconds (30 * 60, () => {
+                warning ("rerere");
+                settings.set_boolean ("weather-refresh", true);
+                return true;
+            });
         }
     }
 }

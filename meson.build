@@ -22,17 +22,24 @@ icons_gresource = gnome.compile_resources(
     c_name: 'as'
 )
 
+c_args = [
+  '-DGWEATHER_I_KNOW_THIS_IS_UNSTABLE',
+]
+
 executable(
     meson.project_name(),
     'src/Application.vala',
     'src/MainWindow.vala',
     'src/Widgets/Toggles.vala',
+    c_args: c_args,
     dependencies: [
         dependency('gee-0.8'),
         dependency('glib-2.0'),
         dependency('granite'),
         dependency('gtk+-3.0'),
         dependency('libgtop-2.0'),
+        dependency('gweather-3.0'),
+        dependency('libgeoclue-2.0'),
         wingpanel,
         meson.get_compiler('c').find_library('m', required : false),
         meson.get_compiler('vala').find_library('posix')
@@ -42,6 +49,8 @@ executable(
     ],
     install: true
 )
+
+
 
 shared_module(
     'wingpanel-monitor',
