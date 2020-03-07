@@ -50,6 +50,11 @@
       <summary>Current location for weather</summary>
       <description></description>
     </key>
+    <key type="s" name="weather-details">
+      <default>"N/A"</default>
+      <summary>Weather details for location</summary>
+      <description></description>
+    </key>
     <key type="d" name="weather-refresh-rate">
       <default>30</default>
       <summary>Refresh rate of weather info, in minutes</summary>

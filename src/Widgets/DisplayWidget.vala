@@ -46,7 +46,11 @@ namespace WingpanelMonitor {
             download_info = new IndicatorWidget ("go-down-symbolic", 8);
             workspace_info = new IndicatorWidget ("computer-symbolic", 2);
             weather_info = new IndicatorWidget ("weather-clear-symbolic", 4);
-
+            weather_info.tooltip_text = "%s in %s".printf (
+                settings.get_string ("weather-details"), settings.get_string ("weather-location")
+                );
+            
+            
             settings.bind ("show-cpu", cpu_info, "display", SettingsBindFlags.GET);
             settings.bind ("show-ram", ram_info, "display", SettingsBindFlags.GET);
             settings.bind ("show-network", upload_info, "display", SettingsBindFlags.GET);

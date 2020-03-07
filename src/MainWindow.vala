@@ -75,7 +75,10 @@ namespace WingpanelMonitor {
             });
 
             settings.changed["weather-refresh"].connect ( () =>{
-                weather_info.update ();
+                if (settings.get_boolean ("weather-refresh") == true) {
+                    weather_info.update ();
+                    settings.set_boolean ("weather-refresh", false);   
+                }
             });
 
             weather_info.updated.connect ( () => {
@@ -85,6 +88,7 @@ namespace WingpanelMonitor {
                 double temp;
                 weather_info.get_value_temp (GWeather.TemperatureUnit.DEFAULT, out temp);
                 int t = (int) temp;
+                settings.set_string ("weather-details", dgettext ("libgweather", weather_info.get_sky ()));
                 settings.set_string ("weather-temperature", "%s°".printf (t.to_string ()));
                 settings.set_string ("weather-icon", weather_info.get_symbolic_icon_name ());
                 settings.set_string ("weather-location", dgettext ("libgweather-locations", location.get_city_name ()));
