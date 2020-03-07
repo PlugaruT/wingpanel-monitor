@@ -103,7 +103,7 @@ namespace WingpanelMonitor {
             var net = network_data.get_bytes ();
             popover_widget.update_network (net[0], net[1]);
         }
-        
+
         private void enable_weather_update () {
             int refresh_rate = settings.get_int ("weather-refresh-rate") * 60;
             Timeout.add_seconds (refresh_rate, () => {

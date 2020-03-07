@@ -10,7 +10,7 @@ namespace WingpanelMonitor {
         public string label_value {
             set {label.label = value; }
         }
-        
+
         public string new_icon {
             set {
                 icon.set_from_icon_name (value, Gtk.IconSize.SMALL_TOOLBAR);
@@ -48,6 +48,6 @@ namespace WingpanelMonitor {
             widget_revealer.add (group);
 
             pack_start (widget_revealer);
-        }        
+        }
     }
 }

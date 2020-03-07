@@ -44,7 +44,7 @@ namespace WingpanelMonitor {
                 "Workspace number", settings.get_boolean ("show-workspace")
                 );
             weather_switch = new Wingpanel.Widgets.Switch (
-                "Weather for %s".printf (settings.get_string("weather-location")), 
+                "Weather for %s".printf (settings.get_string ("weather-location")),
                 settings.get_boolean ("show-weather")
                 );
             indicator = new Wingpanel.Widgets.Switch ("ON/OFF", settings.get_boolean ("display-indicator"));

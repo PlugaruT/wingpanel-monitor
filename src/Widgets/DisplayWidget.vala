@@ -53,7 +53,7 @@ namespace WingpanelMonitor {
             settings.bind ("show-network", download_info, "display", SettingsBindFlags.GET);
             settings.bind ("show-workspace", workspace_info, "display", SettingsBindFlags.GET);
             settings.bind ("show-weather", weather_info, "display", SettingsBindFlags.GET);
-            
+
             add (weather_info);
             add (cpu_info);
             add (ram_info);
@@ -78,10 +78,10 @@ namespace WingpanelMonitor {
             upload_info.label_value = WingpanelMonitor.Utils.format_net_speed (upload, true, false);
             download_info.label_value = WingpanelMonitor.Utils.format_net_speed (download, true, false);
         }
-        
+
         public void update_weather () {
-            weather_info.label_value = settings.get_string("weather-temperature");
-            weather_info.new_icon = settings.get_string("weather-icon");
+            weather_info.label_value = settings.get_string ("weather-temperature");
+            weather_info.new_icon = settings.get_string ("weather-icon");
         }
     }
 }
