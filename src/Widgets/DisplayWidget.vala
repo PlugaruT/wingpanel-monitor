@@ -49,8 +49,8 @@ namespace WingpanelMonitor {
             weather_info.tooltip_text = "%s in %s".printf (
                 settings.get_string ("weather-details"), settings.get_string ("weather-location")
                 );
-            
-            
+
+
             settings.bind ("show-cpu", cpu_info, "display", SettingsBindFlags.GET);
             settings.bind ("show-ram", ram_info, "display", SettingsBindFlags.GET);
             settings.bind ("show-network", upload_info, "display", SettingsBindFlags.GET);

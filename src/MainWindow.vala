@@ -77,7 +77,7 @@ namespace WingpanelMonitor {
             settings.changed["weather-refresh"].connect ( () =>{
                 if (settings.get_boolean ("weather-refresh") == true) {
                     weather_info.update ();
-                    settings.set_boolean ("weather-refresh", false);   
+                    settings.set_boolean ("weather-refresh", false);
                 }
             });
 
