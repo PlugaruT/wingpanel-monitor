@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/PlugaruT/wingpanel-monitor.svg?branch=master)](https://travis-ci.org/PlugaruT/wingpanel-monitor)
-
 <p align="center">
   <img src="data/icons/128/com.github.plugarut.wingpanel-monitor.svg" alt="Icon" />
 </p>
