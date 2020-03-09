@@ -55,7 +55,7 @@
       <summary>Weather details for location</summary>
       <description></description>
     </key>
-    <key type="d" name="weather-refresh-rate">
+    <key type="i" name="weather-refresh-rate">
       <default>30</default>
       <summary>Refresh rate of weather info, in minutes</summary>
       <description></description>

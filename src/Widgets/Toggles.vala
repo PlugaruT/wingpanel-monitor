@@ -27,7 +27,7 @@ namespace WingpanelMonitor {
         private Wingpanel.Widgets.Switch workspace_switch;
         private Wingpanel.Widgets.Switch weather_switch;
         private Wingpanel.Widgets.Switch indicator;
-
+        private SpinRow weather_refresh_spin;
         public unowned Settings settings { get; construct set; }
 
         public TogglesWidget (Settings settings) {
@@ -57,6 +57,13 @@ namespace WingpanelMonitor {
             settings.bind ("show-workspace", workspace_switch.get_switch (), "active", SettingsBindFlags.DEFAULT);
             settings.bind ("show-weather", weather_switch.get_switch (), "active", SettingsBindFlags.DEFAULT);
 
+
+            weather_refresh_spin = new SpinRow ("Weather refresh rate (min)", 1, 60);
+            weather_refresh_spin.set_spin_value (settings.get_int ("weather-refresh-rate"));
+            weather_refresh_spin.changed.connect ( () => {
+                settings.set_int ("weather-refresh-rate", weather_refresh_spin.get_spin_value ());
+            });
+
             add (indicator);
             add (new Wingpanel.Widgets.Separator ());
             add (cpu_switch);
@@ -64,6 +71,7 @@ namespace WingpanelMonitor {
             add (network_switch);
             add (workspace_switch);
             add (weather_switch);
+            add (weather_refresh_spin);
             add (new Wingpanel.Widgets.Separator ());
         }
     }
