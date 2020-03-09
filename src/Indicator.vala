@@ -105,8 +105,8 @@ namespace WingpanelMonitor {
         }
 
         private void enable_weather_update () {
-            Timeout.add_seconds (30 * 60, () => {
-                warning ("rerere");
+            Timeout.add_seconds (15 * 60, () => {
+                info ("Indicator: Request weather refresh");
                 settings.set_boolean ("weather-refresh", true);
                 return true;
             });
