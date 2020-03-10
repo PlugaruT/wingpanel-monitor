@@ -30,6 +30,7 @@ executable(
     meson.project_name(),
     'src/Application.vala',
     'src/MainWindow.vala',
+    'src/Widgets/SpinRow.vala',
     'src/Widgets/Toggles.vala',
     c_args: c_args,
     dependencies: [

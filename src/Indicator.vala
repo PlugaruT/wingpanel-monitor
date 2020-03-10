@@ -105,11 +105,18 @@ namespace WingpanelMonitor {
         }
 
         private void enable_weather_update () {
-            Timeout.add_seconds (15 * 60, () => {
-                info ("Indicator: Request weather refresh");
-                settings.set_boolean ("weather-refresh", true);
-                return true;
+            var refresh_timeout = Timeout.add_seconds (settings.get_int ("weather-refresh-rate") * 60, update_weather);
+
+            settings.changed["weather-refresh-rate"].connect ( () =>{
+                GLib.Source.remove (refresh_timeout);
+                refresh_timeout = Timeout.add_seconds (settings.get_int ("weather-refresh-rate") * 60, update_weather);
             });
+        }
+
+        private bool update_weather () {
+            info ("Indicator: Request weather refresh");
+            settings.set_boolean ("weather-refresh", true);
+            return true;
         }
     }
 }
