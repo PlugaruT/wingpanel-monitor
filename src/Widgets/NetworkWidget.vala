@@ -20,47 +20,37 @@
  */
 
 namespace WingpanelMonitor {
-    public class IndicatorWidget : Gtk.Box {
-        private Gtk.Label label;
-        private Gtk.Image icon;
+    public class NetworkWidget : Gtk.Grid {
         private Gtk.Revealer widget_revealer;
-
-        public string icon_name { get; construct; }
-        public int char_width { get; construct; }
-
-        public string label_value {
-            set {label.label = value; }
-        }
-
-        public string new_icon {
-            set {
-                icon.set_from_icon_name (value, Gtk.IconSize.SMALL_TOOLBAR);
-            }
-        }
+        private Gtk.Label upload_label;
+        private Gtk.Label download_label;
 
         public bool display {
             set { widget_revealer.reveal_child = value; }
             get { return widget_revealer.get_reveal_child () ; }
         }
 
-        public IndicatorWidget (string icon_name, int char_width) {
-            Object (
-                orientation: Gtk.Orientation.HORIZONTAL,
-                icon_name: icon_name,
-                char_width: char_width
-            );
-        }
-
         construct {
-            icon = new Gtk.Image.from_icon_name (icon_name, Gtk.IconSize.SMALL_TOOLBAR);
+            orientation = Gtk.Orientation.HORIZONTAL;
 
-            var group = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+            var icon = new Gtk.Image.from_icon_name ("up-down-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
 
-            label = new Gtk.Label ("N/A");
-            label.set_width_chars (char_width);
+            upload_label = new Gtk.Label ("N/A");
+            upload_label.set_width_chars (8);
+            var upload_label_context = upload_label.get_style_context ();
+            upload_label_context.add_class ("small-label");
+            upload_label_context.add_class ("upload");
 
-            group.pack_start (icon);
-            group.pack_start (label);
+            download_label = new Gtk.Label ("N/A");
+            download_label.set_width_chars (8);
+            var down_label_context = download_label.get_style_context ();
+            down_label_context.add_class ("small-label");
+            down_label_context.add_class ("download");
+
+            var group = new Gtk.Grid ();
+            group.add (upload_label);
+            group.add (icon);
+            group.add (download_label);
 
             widget_revealer = new Gtk.Revealer ();
             widget_revealer.transition_type = Gtk.RevealerTransitionType.SLIDE_RIGHT;
@@ -68,7 +58,12 @@ namespace WingpanelMonitor {
 
             widget_revealer.add (group);
 
-            pack_start (widget_revealer);
+            add (widget_revealer);
+        }
+
+        public void update_label_data (string up_speed, string down_speed) {
+            upload_label.label = up_speed;
+            download_label.label = down_speed;
         }
     }
 }
