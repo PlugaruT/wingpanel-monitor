@@ -22,12 +22,22 @@ icons_gresource = gnome.compile_resources(
     c_name: 'as'
 )
 
+config_data = configuration_data()
+config_data.set_quoted('GETTEXT_PACKAGE', meson.project_name())
+
+configure_file(output: 'config.h', configuration: config_data)
+config_h_dir = include_directories('.')
+
+
 c_args = [
   '-DGWEATHER_I_KNOW_THIS_IS_UNSTABLE',
+  '-include', 'config.h',
+  '-w',
 ]
 
 executable(
     meson.project_name(),
+    icons_gresource,
     'src/Application.vala',
     'src/MainWindow.vala',
     'src/Widgets/SpinRow.vala',
@@ -66,6 +76,7 @@ shared_module(
     'src/Services/Utils.vala',
     'src/Services/System.vala',
     icons_gresource,
+    c_args: c_args,
     dependencies: [
         dependency('gee-0.8'),
         dependency('glib-2.0'),
@@ -74,7 +85,6 @@ shared_module(
         dependency('libgtop-2.0'),
         dependency('gdk-x11-3.0'),
         wingpanel,
-        meson.get_compiler('c').find_library('m', required : false)
     ],
     install: true,
     install_dir : wingpanel.get_pkgconfig_variable('indicatorsdir', define_variable: ['libdir', libdir]),

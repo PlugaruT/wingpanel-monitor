@@ -42,8 +42,8 @@ namespace WingpanelMonitor {
 
             cpu_info = new IndicatorWidget ("cpu-symbolic", 4);
             ram_info = new IndicatorWidget ("ram-symbolic", 4);
-            upload_info = new IndicatorWidget ("go-up-symbolic", 8);
-            download_info = new IndicatorWidget ("go-down-symbolic", 8);
+            upload_info = new IndicatorWidget ("upload-speed-symbolic", 8);
+            download_info = new IndicatorWidget ("download-speed-symbolic", 8);
             workspace_info = new IndicatorWidget ("computer-symbolic", 2);
             weather_info = new IndicatorWidget ("weather-clear-symbolic", 4);
             weather_info.tooltip_text = "%s in %s".printf (

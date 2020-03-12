@@ -43,6 +43,7 @@ namespace WingpanelMonitor {
         }
 
         construct {
+            Gtk.IconTheme.get_default ().add_resource_path ("/com/github/plugarut/wingpanel-monitor/icons");
             cpu_data = new CPU ();
             memory_data = new Memory ();
             network_data = new Network ();
