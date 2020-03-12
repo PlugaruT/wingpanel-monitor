@@ -1,59 +1,58 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 469.333 469.333" style="enable-background:new 0 0 469.333 469.333;" xml:space="preserve">
-<g>
-	<g>
-		<g>
-			<path d="M458.667,181.333c5.896,0,10.667-4.771,10.667-10.667S464.563,160,458.667,160h-32v-42.667h32
-				c5.896,0,10.667-4.771,10.667-10.667S464.563,96,458.667,96h-32V85.333c0-23.531-19.135-42.667-42.667-42.667h-10.667v-32
-				C373.333,4.771,368.563,0,362.667,0C356.771,0,352,4.771,352,10.667v32h-42.667v-32C309.333,4.771,304.562,0,298.667,0
-				S288,4.771,288,10.667v32h-42.667v-32C245.333,4.771,240.562,0,234.667,0S224,4.771,224,10.667v32h-42.667v-32
-				C181.333,4.771,176.562,0,170.667,0S160,4.771,160,10.667v32h-42.667v-32C117.333,4.771,112.562,0,106.667,0S96,4.771,96,10.667
-				v32H85.333c-23.531,0-42.667,19.135-42.667,42.667V96h-32C4.771,96,0,100.771,0,106.667s4.771,10.667,10.667,10.667h32V160h-32
-				C4.771,160,0,164.771,0,170.667s4.771,10.667,10.667,10.667h32V224h-32C4.771,224,0,228.771,0,234.667
-				s4.771,10.667,10.667,10.667h32V288h-32C4.771,288,0,292.771,0,298.667s4.771,10.667,10.667,10.667h32V352h-32
-				C4.771,352,0,356.771,0,362.667c0,5.896,4.771,10.667,10.667,10.667h32V384c0,23.531,19.135,42.667,42.667,42.667H96v32
-				c0,5.896,4.771,10.667,10.667,10.667s10.667-4.771,10.667-10.667v-32H160v32c0,5.896,4.771,10.667,10.667,10.667
-				s10.667-4.771,10.667-10.667v-32H224v32c0,5.896,4.771,10.667,10.667,10.667s10.667-4.771,10.667-10.667v-32H288v32
-				c0,5.896,4.771,10.667,10.667,10.667s10.667-4.771,10.667-10.667v-32H352v32c0,5.896,4.771,10.667,10.667,10.667
-				c5.896,0,10.667-4.771,10.667-10.667v-32H384c23.531,0,42.667-19.135,42.667-42.667v-10.667h32
-				c5.896,0,10.667-4.771,10.667-10.667c0-5.896-4.771-10.667-10.667-10.667h-32v-42.667h32c5.896,0,10.667-4.771,10.667-10.667
-				S464.563,288,458.667,288h-32v-42.667h32c5.896,0,10.667-4.771,10.667-10.667S464.563,224,458.667,224h-32v-42.667H458.667z
-				 M384,373.333c0,5.896-4.771,10.667-10.667,10.667H96c-5.896,0-10.667-4.771-10.667-10.667V96
-				c0-5.896,4.771-10.667,10.667-10.667h277.333C379.229,85.333,384,90.104,384,96V373.333z"/>
-			<rect x="106.667" y="106.667" width="256" height="256"/>
-		</g>
-	</g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   height="16"
+   width="16"
+   version="1.1"
+   id="svg8">
+  <metadata
+     id="metadata14">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs12" />
+  <path
+     id="path820"
+     d="m 0,4 v 7 h 1 v 2 h 5 2 7 v -2 h 1 V 4 Z m 1,1 h 14 v 5 H 1 Z m 1,6 h 1 v 1 H 2 Z m 2,0 h 1 v 1 H 4 Z m 2,0 h 2 v 1 H 6 Z m 3,0 h 1 v 1 H 9 Z m 2,0 h 1 v 1 h -1 z m 2,0 h 1 v 1 h -1 z"
+     style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
+  <rect
+     y="6"
+     x="2"
+     height="3"
+     width="2"
+     id="rect826"
+     style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  <rect
+     y="6"
+     x="5"
+     height="3"
+     width="2"
+     id="rect826-3"
+     style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  <rect
+     y="6"
+     x="9"
+     height="3"
+     width="2"
+     id="rect826-6"
+     style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  <rect
+     y="6"
+     x="12"
+     height="3"
+     width="2"
+     id="rect826-7"
+     style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
 </svg>
