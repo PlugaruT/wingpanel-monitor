@@ -22,6 +22,7 @@
 namespace WingpanelMonitor {
     public class Indicator : Wingpanel.Indicator {
         const string APPNAME = "wingpanel-monitor";
+        private uint popover_update_timeout;
 
         private DisplayWidget display_widget;
         private PopoverWidget popover_widget;
@@ -75,9 +76,11 @@ namespace WingpanelMonitor {
         }
 
         public override void opened () {
+            popover_update_timeout = Timeout.add_seconds (1, update_popover_widget_data);
         }
 
         public override void closed () {
+            GLib.Source.remove (popover_update_timeout);
         }
 
         private void update_display_widget_data () {
@@ -89,20 +92,22 @@ namespace WingpanelMonitor {
                     var net = network_data.get_bytes ();
                     display_widget.update_network (net[0], net[1]);
                     display_widget.update_weather ();
-                    update_popover_widget_data ();
                     return true;
                 });
             }
         }
 
-        private void update_popover_widget_data () {
-            if (popover_widget == null) return;
+        private bool update_popover_widget_data () {
+            if (popover_widget == null) {
+                return false;
+            }
             popover_widget.update_cpu_frequency (cpu_data.frequency);
             popover_widget.update_uptime (system_data.uptime);
             popover_widget.update_ram (memory_data.used, memory_data.total);
             popover_widget.update_swap (memory_data.used_swap, memory_data.total_swap);
             var net = network_data.get_bytes ();
             popover_widget.update_network (net[0], net[1]);
+            return true;
         }
 
         private void enable_weather_update () {
