@@ -37,12 +37,14 @@ namespace WingpanelMonitor {
 
             upload_label = new Gtk.Label ("N/A");
             upload_label.set_width_chars (8);
+            upload_label.halign = Gtk.Align.CENTER;
             var upload_label_context = upload_label.get_style_context ();
             upload_label_context.add_class ("small-label");
             upload_label_context.add_class ("upload");
 
             download_label = new Gtk.Label ("N/A");
             download_label.set_width_chars (8);
+            download_label.halign = Gtk.Align.CENTER;
             var down_label_context = download_label.get_style_context ();
             down_label_context.add_class ("small-label");
             down_label_context.add_class ("download");
