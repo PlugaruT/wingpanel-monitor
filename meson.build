@@ -70,6 +70,7 @@ shared_module(
     'src/Widgets/PopoverWidget.vala',
     'src/Widgets/IndicatorWidget.vala',
     'src/Widgets/PopoverWidgetRow.vala',
+    'src/Widgets/NetworkWidget.vala',
     'src/Services/Cpu.vala',
     'src/Services/Memory.vala',
     'src/Services/Network.vala',

@@ -24,10 +24,9 @@ namespace WingpanelMonitor {
     public class DisplayWidget : Gtk.Grid {
         private IndicatorWidget cpu_info;
         private IndicatorWidget ram_info;
-        private IndicatorWidget upload_info;
-        private IndicatorWidget download_info;
         private IndicatorWidget workspace_info;
         private IndicatorWidget weather_info;
+        private NetworkWidget network_info;
 
         public unowned Settings settings { get; construct set; }
 
@@ -42,27 +41,25 @@ namespace WingpanelMonitor {
 
             cpu_info = new IndicatorWidget ("cpu-symbolic", 4);
             ram_info = new IndicatorWidget ("ram-symbolic", 4);
-            upload_info = new IndicatorWidget ("upload-speed-symbolic", 8);
-            download_info = new IndicatorWidget ("download-speed-symbolic", 8);
             workspace_info = new IndicatorWidget ("computer-symbolic", 2);
             weather_info = new IndicatorWidget ("weather-clear-symbolic", 4);
             weather_info.tooltip_text = "%s in %s".printf (
                 settings.get_string ("weather-details"), settings.get_string ("weather-location")
                 );
 
+            network_info = new NetworkWidget ();
+
 
             settings.bind ("show-cpu", cpu_info, "display", SettingsBindFlags.GET);
             settings.bind ("show-ram", ram_info, "display", SettingsBindFlags.GET);
-            settings.bind ("show-network", upload_info, "display", SettingsBindFlags.GET);
-            settings.bind ("show-network", download_info, "display", SettingsBindFlags.GET);
+            settings.bind ("show-network", network_info, "display", SettingsBindFlags.GET);
             settings.bind ("show-workspace", workspace_info, "display", SettingsBindFlags.GET);
             settings.bind ("show-weather", weather_info, "display", SettingsBindFlags.GET);
 
             add (weather_info);
+            add (network_info);
             add (cpu_info);
             add (ram_info);
-            add (upload_info);
-            add (download_info);
             add (workspace_info);
         }
 
@@ -79,8 +76,9 @@ namespace WingpanelMonitor {
         }
 
         public void update_network (int upload, int download) {
-            upload_info.label_value = WingpanelMonitor.Utils.format_net_speed (upload, true, false);
-            download_info.label_value = WingpanelMonitor.Utils.format_net_speed (download, true, false);
+            string up = WingpanelMonitor.Utils.format_net_speed (upload, true, false);
+            string down = WingpanelMonitor.Utils.format_net_speed (download, true, false);
+            network_info.update_label_data (up, down);
         }
 
         public void update_weather () {
