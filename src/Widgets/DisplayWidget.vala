@@ -26,6 +26,7 @@ namespace WingpanelMonitor {
         private IndicatorWidget ram_info;
         private IndicatorWidget workspace_info;
         private IndicatorWidget weather_info;
+        private IndicatorWidget icon_only;
         private NetworkWidget network_info;
 
         public unowned Settings settings { get; construct set; }
@@ -43,6 +44,8 @@ namespace WingpanelMonitor {
             ram_info = new IndicatorWidget ("ram-symbolic", 4);
             workspace_info = new IndicatorWidget ("computer-symbolic", 2);
             weather_info = new IndicatorWidget ("weather-clear-symbolic", 4);
+            icon_only = new IndicatorWidget ("utilities-system-monitor-symbolic", 0);
+            icon_only.label_value = "";
             weather_info.tooltip_text = "%s in %s".printf (
                 settings.get_string ("weather-details"), settings.get_string ("weather-location")
                 );
@@ -55,7 +58,9 @@ namespace WingpanelMonitor {
             settings.bind ("show-network", network_info, "display", SettingsBindFlags.GET);
             settings.bind ("show-workspace", workspace_info, "display", SettingsBindFlags.GET);
             settings.bind ("show-weather", weather_info, "display", SettingsBindFlags.GET);
+            settings.bind ("icon-only", icon_only, "display", SettingsBindFlags.GET);
 
+            add (icon_only);
             add (weather_info);
             add (network_info);
             add (cpu_info);

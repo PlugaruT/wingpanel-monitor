@@ -5,6 +5,11 @@
       <summary>Display indicator in Wingpanel</summary>
       <description></description>
     </key>
+    <key type="b" name="icon-only">
+      <default>false</default>
+      <summary>Show only indicator icon in wingpanel</summary>
+      <description></description>
+    </key>
     <key type="b" name="show-cpu">
       <default>true</default>
       <summary>Show CPU load in Wingpanel</summary>
