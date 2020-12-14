@@ -109,8 +109,8 @@ namespace WingpanelMonitor {
         }
 
         public void update_network (int upload, int download) {
-            network_down.label_value = Utils.format_net_speed (upload, true, false);
-            network_up.label_value = Utils.format_net_speed (download, true, false);
+            network_down.label_value = Utils.format_net_speed (download, true, false);
+            network_up.label_value = Utils.format_net_speed (upload, true, false);
         }
     }
 }
