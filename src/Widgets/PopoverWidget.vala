@@ -69,8 +69,8 @@ namespace WingpanelMonitor {
             add (ram);
             add (swap);
             add (uptime);
-            add (network_down);
             add (network_up);
+            add (network_down);
             add (new Wingpanel.Widgets.Separator ());
             add (hide_button);
             add (settings_button);
@@ -109,8 +109,8 @@ namespace WingpanelMonitor {
         }
 
         public void update_network (int upload, int download) {
-            network_down.label_value = Utils.format_net_speed (upload, true, false);
-            network_up.label_value = Utils.format_net_speed (download, true, false);
+            network_down.label_value = Utils.format_net_speed (download, true, false);
+            network_up.label_value = Utils.format_net_speed (upload, true, false);
         }
     }
 }

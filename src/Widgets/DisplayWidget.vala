@@ -37,7 +37,6 @@ namespace WingpanelMonitor {
 
         construct {
             valign = Gtk.Align.CENTER;
-            margin_top = 4;
 
 
             cpu_info = new IndicatorWidget ("cpu-symbolic", 4);
