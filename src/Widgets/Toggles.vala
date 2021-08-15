@@ -62,7 +62,8 @@ public class WingpanelMonitor.TogglesWidget : Gtk.Grid {
             active = settings.get_boolean ("show-workspace"),
             margin_bottom = 5
         };
-        weather_switch = new Granite.SwitchModelButton ("Weather for %s".printf (settings.get_string ("weather-location"))) {
+        var current_location = settings.get_string ("weather-location");
+        weather_switch = new Granite.SwitchModelButton ("Weather for %s".printf (current_location)) {
             active = settings.get_boolean ("show-weather"),
             margin_bottom = 5
         };
