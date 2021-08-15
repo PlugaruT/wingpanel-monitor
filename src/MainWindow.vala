@@ -21,7 +21,7 @@
 
 namespace WingpanelMonitor {
     public class MainWindow : Gtk.Window {
-        private GLib.Settings settings;
+        private Settings settings;
         private GWeather.Location location;
         private GWeather.Info weather_info;
 
@@ -37,8 +37,8 @@ namespace WingpanelMonitor {
         }
 
         construct {
-            settings = new GLib.Settings ("com.github.plugarut.wingpanel-monitor");
-            var toggles = new TogglesWidget (settings);
+            settings = new Settings ("com.github.plugarut.wingpanel-monitor");
+            var toggles = new TogglesWidget ();
 
             get_location.begin ();
 
