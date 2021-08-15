@@ -64,14 +64,14 @@ namespace WingpanelMonitor {
 
 
             add (title_label);
-            add (new Wingpanel.Widgets.Separator ());
+            add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
             add (cpu_freq);
             add (ram);
             add (swap);
             add (uptime);
             add (network_up);
             add (network_down);
-            add (new Wingpanel.Widgets.Separator ());
+            add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
             add (hide_button);
             add (settings_button);
         }
