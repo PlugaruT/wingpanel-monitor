@@ -20,7 +20,7 @@
  */
 
 namespace WingpanelMonitor {
-    public class MainWindow : Gtk.Window {
+    public class MainWindow : Hdy.ApplicationWindow {
         private Settings settings;
         private GWeather.Location location;
         private GWeather.Info weather_info;
@@ -28,12 +28,11 @@ namespace WingpanelMonitor {
         public MainWindow (Gtk.Application application) {
             Object (
                 application: application,
-                border_width: 1,
                 icon_name: "com.github.plugarut.wingpanel-monitor",
-                resizable: false, title: "Wingpanel Monitor",
+                resizable: false,
                 window_position: Gtk.WindowPosition.CENTER,
                 default_width: 300
-                );
+            );
         }
 
         construct {
@@ -62,12 +61,7 @@ namespace WingpanelMonitor {
             header.show_close_button = true;
             header.pack_end (refresh_btn);
 
-            var header_context = header.get_style_context ();
-            header_context.add_class ("titlebar");
-            header_context.add_class ("default-decoration");
-            header_context.add_class (Gtk.STYLE_CLASS_FLAT);
 
-            set_titlebar (header);
             add (layout);
 
             focus_in_event.connect (() => {
