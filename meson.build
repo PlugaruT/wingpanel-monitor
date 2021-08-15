@@ -54,7 +54,7 @@ executable(
         dependency('libgtop-2.0'),
         dependency('gweather-3.0'),
         dependency('libgeoclue-2.0'),
-        dependency('libhandy-1', version: '>=0.83.0'),
+        dependency('libhandy-1'),
         wingpanel,
         meson.get_compiler('c').find_library('m', required : false),
         meson.get_compiler('vala').find_library('posix')
