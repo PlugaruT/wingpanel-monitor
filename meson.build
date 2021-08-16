@@ -13,10 +13,8 @@ libdir = join_paths(prefix, get_option('libdir'))
 icondir = join_paths(datadir, 'icons', 'hicolor')
 
 # deps
-wingpanel= dependency('wingpanel-2.0',required : false)
-if not wingpanel.found()
-    wingpanel = dependency('wingpanel',required : true)
-endif
+wingpanel = dependency('wingpanel', required : true)
+
 
 icons_gresource = gnome.compile_resources(
     'gresource_icons',
