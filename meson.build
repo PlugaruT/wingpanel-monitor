@@ -13,10 +13,8 @@ libdir = join_paths(prefix, get_option('libdir'))
 icondir = join_paths(datadir, 'icons', 'hicolor')
 
 # deps
-wingpanel= dependency('wingpanel-2.0',required : false)
-if not wingpanel.found()
-    wingpanel = dependency('wingpanel',required : true)
-endif
+wingpanel = dependency('wingpanel', required : true)
+
 
 icons_gresource = gnome.compile_resources(
     'gresource_icons',
@@ -54,6 +52,7 @@ executable(
         dependency('libgtop-2.0'),
         dependency('gweather-3.0'),
         dependency('libgeoclue-2.0'),
+        dependency('libhandy-1'),
         wingpanel,
         meson.get_compiler('c').find_library('m', required : false),
         meson.get_compiler('vala').find_library('posix')

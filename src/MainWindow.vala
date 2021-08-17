@@ -20,25 +20,26 @@
  */
 
 namespace WingpanelMonitor {
-    public class MainWindow : Gtk.Window {
-        private GLib.Settings settings;
+    public class MainWindow : Hdy.ApplicationWindow {
+        private Settings settings;
         private GWeather.Location location;
         private GWeather.Info weather_info;
 
         public MainWindow (Gtk.Application application) {
             Object (
                 application: application,
-                border_width: 1,
                 icon_name: "com.github.plugarut.wingpanel-monitor",
-                resizable: false, title: "Wingpanel Monitor",
+                resizable: false,
                 window_position: Gtk.WindowPosition.CENTER,
-                default_width: 300
-                );
+                default_width: 300,
+                title: _("Wingpanel Monitor")
+            );
         }
 
         construct {
-            settings = new GLib.Settings ("com.github.plugarut.wingpanel-monitor");
-            var toggles = new TogglesWidget (settings);
+            Hdy.init ();
+            settings = new Settings ("com.github.plugarut.wingpanel-monitor");
+            var toggles = new TogglesWidget ();
 
             get_location.begin ();
 
@@ -50,16 +51,11 @@ namespace WingpanelMonitor {
                 weather_info.update ();
             });
 
-            var layout = new Gtk.Grid ();
-            layout.hexpand = true;
-            layout.margin = 10;
-            layout.column_spacing = 6;
-            layout.row_spacing = 10;
-
-            layout.attach (toggles, 0, 1, 1, 1);
-
-            var header = new Gtk.HeaderBar ();
-            header.show_close_button = true;
+            var content = new Gtk.Grid ();
+            var header = new Hdy.HeaderBar () {
+                show_close_button = true,
+                title = "Wingpanel Monitor"
+            };
             header.pack_end (refresh_btn);
 
             var header_context = header.get_style_context ();
@@ -67,8 +63,18 @@ namespace WingpanelMonitor {
             header_context.add_class ("default-decoration");
             header_context.add_class (Gtk.STYLE_CLASS_FLAT);
 
-            set_titlebar (header);
-            add (layout);
+            var layout = new Gtk.Grid ();
+            layout.hexpand = true;
+            layout.margin = 10;
+            layout.column_spacing = 6;
+            layout.row_spacing = 10;
+
+            layout.attach (toggles, 0, 0);
+
+            content.attach (header, 0, 0);
+            content.attach (layout, 0, 1);
+
+            add (content);
 
             focus_in_event.connect (() => {
                 weather_info.update ();

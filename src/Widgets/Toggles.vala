@@ -20,71 +20,77 @@
  *              Anderson Laverde <anderson.laverde@zohomail.com>
  */
 
-namespace WingpanelMonitor {
-    public class TogglesWidget : Gtk.Grid {
-        private Granite.SwitchModelButton cpu_switch;
-        private Granite.SwitchModelButton ram_switch;
-        private Granite.SwitchModelButton network_switch;
-        private Granite.SwitchModelButton workspace_switch;
-        private Granite.SwitchModelButton weather_switch;
-        private Granite.SwitchModelButton icon_only_switch;
-        private Granite.SwitchModelButton indicator;
-        private SpinRow weather_refresh_spin;
-        public unowned Settings settings { get; set; }
+public class WingpanelMonitor.TogglesWidget : Gtk.Grid {
+    private Granite.SwitchModelButton indicator;
+    private Granite.SwitchModelButton cpu_switch;
+    private Granite.SwitchModelButton icon_only_switch;
+    private Granite.SwitchModelButton ram_switch;
+    private Granite.SwitchModelButton network_switch;
+    private Granite.SwitchModelButton workspace_switch;
+    private Granite.SwitchModelButton weather_switch;
+    private SpinRow weather_refresh_spin;
+    private Settings settings;
 
-        public TogglesWidget (Settings settings) {
-            Object (settings: settings, hexpand: true);
-        }
+    public TogglesWidget () {
+        Object (hexpand: true);
+    }
 
-        construct {
-            orientation = Gtk.Orientation.VERTICAL;
-            indicator = new Granite.SwitchModelButton ("ON/OFF") {
-                active = settings.get_boolean ("display-indicator")
-            };
-            cpu_switch = new Granite.SwitchModelButton ("CPU usage") {
-                active = settings.get_boolean ("show-cpu")
-            };
-            icon_only_switch = new Granite.SwitchModelButton ("Show icon") {
-                active = settings.get_boolean ("icon-only")
-            };
-            ram_switch = new Granite.SwitchModelButton ("RAM usage") {
-                active = settings.get_boolean ("show-ram")
-            };
-            network_switch = new Granite.SwitchModelButton ("Network usage") {
-                active = settings.get_boolean ("show-network")
-            };
-            workspace_switch = new Granite.SwitchModelButton ("Workspace number") {
-                active = settings.get_boolean ("show-workspace")
-            };
-            weather_switch = new Granite.SwitchModelButton ("Weather for %s".printf (settings.get_string ("weather-location"))) {
-                active = settings.get_boolean ("show-weather")
-            };
-            
-            settings.bind ("display-indicator", indicator, "active", SettingsBindFlags.DEFAULT);
-            settings.bind ("show-cpu", cpu_switch, "active", SettingsBindFlags.DEFAULT);
-            settings.bind ("show-ram", ram_switch, "active", SettingsBindFlags.DEFAULT);
-            settings.bind ("show-network", network_switch, "active", SettingsBindFlags.DEFAULT);
-            settings.bind ("show-workspace", workspace_switch, "active", SettingsBindFlags.DEFAULT);
-            settings.bind ("show-weather", weather_switch, "active", SettingsBindFlags.DEFAULT);
-            settings.bind ("icon-only", icon_only_switch, "active", SettingsBindFlags.DEFAULT);
+    construct {
+        orientation = Gtk.Orientation.VERTICAL;
+        settings = new GLib.Settings ("com.github.plugarut.wingpanel-monitor");
+        indicator = new Granite.SwitchModelButton ("ON/OFF") {
+            active = settings.get_boolean ("display-indicator"),
+            margin_bottom = 5
+        };
+        cpu_switch = new Granite.SwitchModelButton ("CPU usage") {
+            active = settings.get_boolean ("show-cpu"),
+            margin_bottom = 5
+        };
+        icon_only_switch = new Granite.SwitchModelButton ("Show icon") {
+            active = settings.get_boolean ("icon-only"),
+            margin_bottom = 5
+        };
+        ram_switch = new Granite.SwitchModelButton ("RAM usage") {
+            active = settings.get_boolean ("show-ram"),
+            margin_bottom = 5
+        };
+        network_switch = new Granite.SwitchModelButton ("Network usage") {
+            active = settings.get_boolean ("show-network"),
+            margin_bottom = 5
+        };
+        workspace_switch = new Granite.SwitchModelButton ("Workspace number") {
+            active = settings.get_boolean ("show-workspace"),
+            margin_bottom = 5
+        };
+        var current_location = settings.get_string ("weather-location");
+        weather_switch = new Granite.SwitchModelButton ("Weather for %s".printf (current_location)) {
+            active = settings.get_boolean ("show-weather"),
+            margin_bottom = 5
+        };
 
+        indicator.toggled.connect (() => settings.set_boolean ("display-indicator", indicator.get_active ()));
+        cpu_switch.toggled.connect (() => settings.set_boolean ("show-cpu", cpu_switch.get_active ()));
+        icon_only_switch.toggled.connect (() => settings.set_boolean ("icon-only", icon_only_switch.get_active ()));
+        ram_switch.toggled.connect (() => settings.set_boolean ("show-ram", ram_switch.get_active ()));
+        network_switch.toggled.connect (() => settings.set_boolean ("show-network", network_switch.get_active ()));
+        workspace_switch.toggled.connect (() => settings.set_boolean ("show-workspace", workspace_switch.get_active ()));
+        weather_switch.toggled.connect (() => settings.set_boolean ("show-weather", weather_switch.get_active ()));
 
-            weather_refresh_spin = new SpinRow ("Weather refresh rate (min)", 1, 60);
-            weather_refresh_spin.set_spin_value (settings.get_int ("weather-refresh-rate"));
-            weather_refresh_spin.changed.connect ( () => {
-                settings.set_int ("weather-refresh-rate", weather_refresh_spin.get_spin_value ());
-            });
+        weather_refresh_spin = new SpinRow ("Weather refresh rate (min)", 1, 60);
+        weather_refresh_spin.set_spin_value (settings.get_int ("weather-refresh-rate"));
+        weather_refresh_spin.changed.connect ( () => {
+            settings.set_int ("weather-refresh-rate", weather_refresh_spin.get_spin_value ());
+        });
 
-            add (indicator);
-            add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
-            add (icon_only_switch);
-            add (cpu_switch);
-            add (ram_switch);
-            add (network_switch);
-            add (workspace_switch);
-            add (weather_switch);
-            add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
-            add (weather_refresh_spin);
-        }
+        add (indicator);
+        add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL) { margin_bottom = 5 });
+        add (icon_only_switch);
+        add (cpu_switch);
+        add (ram_switch);
+        add (network_switch);
+        add (workspace_switch);
+        add (weather_switch);
+        add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL) { margin_bottom = 5 });
+        add (weather_refresh_spin);
     }
 }
