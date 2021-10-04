@@ -80,8 +80,8 @@ namespace WingpanelMonitor {
         }
 
         public void update_network (int upload, int download) {
-            string up = WingpanelMonitor.Utils.format_net_speed (upload, true, false);
-            string down = WingpanelMonitor.Utils.format_net_speed (download, true, false);
+            string up = WingpanelMonitor.Utils.format_net_speed (upload, true, settings.get_boolean ("show-bits"));
+            string down = WingpanelMonitor.Utils.format_net_speed (download, true, settings.get_boolean ("show-bits"));
             network_info.update_label_data (up, down);
         }
 

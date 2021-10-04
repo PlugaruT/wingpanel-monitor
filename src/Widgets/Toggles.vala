@@ -26,6 +26,7 @@ public class WingpanelMonitor.TogglesWidget : Gtk.Grid {
     private Granite.SwitchModelButton icon_only_switch;
     private Granite.SwitchModelButton ram_switch;
     private Granite.SwitchModelButton network_switch;
+    private Granite.SwitchModelButton bits_switch;
     private Granite.SwitchModelButton workspace_switch;
     private Granite.SwitchModelButton weather_switch;
     private SpinRow weather_refresh_spin;
@@ -58,6 +59,11 @@ public class WingpanelMonitor.TogglesWidget : Gtk.Grid {
             active = settings.get_boolean ("show-network"),
             margin_bottom = 5
         };
+        bits_switch = new Granite.SwitchModelButton ("Network usage in bits") {
+            active = settings.get_boolean ("show-bits"),
+            sensitive = network_switch.active,
+            margin_bottom = 5
+        };
         workspace_switch = new Granite.SwitchModelButton ("Workspace number") {
             active = settings.get_boolean ("show-workspace"),
             margin_bottom = 5
@@ -72,7 +78,11 @@ public class WingpanelMonitor.TogglesWidget : Gtk.Grid {
         cpu_switch.toggled.connect (() => settings.set_boolean ("show-cpu", cpu_switch.get_active ()));
         icon_only_switch.toggled.connect (() => settings.set_boolean ("icon-only", icon_only_switch.get_active ()));
         ram_switch.toggled.connect (() => settings.set_boolean ("show-ram", ram_switch.get_active ()));
-        network_switch.toggled.connect (() => settings.set_boolean ("show-network", network_switch.get_active ()));
+        network_switch.toggled.connect (() => {
+            settings.set_boolean ("show-network", network_switch.get_active ());
+            bits_switch.sensitive = network_switch.active;
+        });
+        bits_switch.toggled.connect (() => settings.set_boolean ("show-bits", bits_switch.get_active ()));
         workspace_switch.toggled.connect (() => settings.set_boolean ("show-workspace", workspace_switch.get_active ()));
         weather_switch.toggled.connect (() => settings.set_boolean ("show-weather", weather_switch.get_active ()));
 
@@ -88,6 +98,7 @@ public class WingpanelMonitor.TogglesWidget : Gtk.Grid {
         add (cpu_switch);
         add (ram_switch);
         add (network_switch);
+        add (bits_switch);
         add (workspace_switch);
         add (weather_switch);
         add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL) { margin_bottom = 5 });
