@@ -25,6 +25,11 @@
       <summary>Show Network usage in Wingpanel</summary>
       <description></description>
     </key>
+    <key type="b" name="show-bits">
+      <default>false</default>
+      <summary>Show Network usage in bits per second</summary>
+      <description></description>
+    </key>
     <key type="b" name="show-graph">
       <default>false</default>
       <summary>Show graph for CPU/RAM in Wingpanel</summary>
