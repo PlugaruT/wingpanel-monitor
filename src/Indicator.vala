@@ -34,6 +34,8 @@ namespace WingpanelMonitor {
 
         private static GLib.Settings settings;
 
+        private int[] bytes;
+
         public Indicator (Wingpanel.IndicatorManager.ServerType server_type) {
             Object (
                 code_name: APPNAME
@@ -92,11 +94,11 @@ namespace WingpanelMonitor {
                     display_widget.update_workspace ((int)screen.get_current_desktop () + 1);
                     display_widget.update_cpu (cpu_data.percentage_used);
                     display_widget.update_memory (memory_data.percentage_used);
-                    var net = network_data.get_bytes ();
-                    display_widget.update_network (net[0], net[1]);
+                    bytes = network_data.get_bytes ();
+                    display_widget.update_network (bytes[0], bytes[1]);
                     display_widget.update_weather ();
                     update_popover_widget_data ();
-                    return true;
+                    return GLib.Source.CONTINUE;
                 });
             }
         }
@@ -107,8 +109,7 @@ namespace WingpanelMonitor {
             popover_widget.update_uptime (system_data.uptime);
             popover_widget.update_ram (memory_data.used, memory_data.total);
             popover_widget.update_swap (memory_data.used_swap, memory_data.total_swap);
-            var net = network_data.get_bytes ();
-            popover_widget.update_network (net[0], net[1]);
+            popover_widget.update_network (bytes[0], bytes[1]);
         }
 
         private void enable_weather_update () {
