@@ -43,6 +43,7 @@ namespace WingpanelMonitor {
         }
 
         construct {
+/*
             var provider = new Gtk.CssProvider ();
             provider.load_from_resource ("/com/github/plugarut/wingpanel-monitor/icons/Application.css");
             Gtk.StyleContext.add_provider_for_screen (
@@ -50,7 +51,7 @@ namespace WingpanelMonitor {
                 provider,
                 Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
             );
-
+*/
             Gtk.IconTheme.get_default ().add_resource_path ("/com/github/plugarut/wingpanel-monitor/icons");
             cpu_data = new CPU ();
             memory_data = new Memory ();

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
   <gresource prefix="/com/github/plugarut/wingpanel-monitor/icons">
-    <file alias="Application.css">Application.css</file>
     <file compressed="true" preprocess="xml-stripblanks">cpu-symbolic.svg</file>
     <file compressed="true" preprocess="xml-stripblanks">ram-symbolic.svg</file>
     <file compressed="true" preprocess="xml-stripblanks">up-down-symbolic.svg</file>
