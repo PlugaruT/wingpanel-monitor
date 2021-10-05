@@ -26,11 +26,26 @@ namespace WingpanelMonitor {
         private int _bytes_out;
         private int _bytes_out_old;
 
+        private int _packets_in;
+        private int _packets_in_old;
+
+        private int _packets_out;
+        private int _packets_out_old;
+
+        // An approximate average packet overhead guesstimate because
+        // it changes for different formats (IPv4, IPv6, Ethernet, Wi-Fi etc).
+        private const int PER_PACKET_OVERHEAD = 40;
+
         public Network () {
             _bytes_in = 0;
             _bytes_in_old = 0;
             _bytes_out = 0;
             _bytes_out_old = 0;
+
+            _packets_in = 0;
+            _packets_in_old = 0;
+            _packets_out = 0;
+            _packets_out_old = 0;
         }
 
         public int[] get_bytes () {
@@ -54,6 +69,10 @@ namespace WingpanelMonitor {
 
                     n_bytes_out += (int)netload.bytes_out;
                     n_bytes_in += (int)netload.bytes_in;
+
+                    // Subtract packet header size overhead to get actual payload size.
+                    n_bytes_out -= (int)netload.packets_out * PER_PACKET_OVERHEAD;
+                    n_bytes_in -= (int)netload.packets_in * PER_PACKET_OVERHEAD;
                 }
             }
             _bytes_out = (n_bytes_out - _bytes_out_old) / 1;
