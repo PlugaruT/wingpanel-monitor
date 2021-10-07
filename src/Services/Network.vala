@@ -26,17 +26,33 @@ namespace WingpanelMonitor {
         private int _bytes_out;
         private int _bytes_out_old;
 
+        private int _packets_in;
+        private int _packets_in_old;
+
+        private int _packets_out;
+        private int _packets_out_old;
+
+        // An approximate average packet overhead guesstimate because
+        // it changes for different header sizes (TCP, UDP, IPv4, IPv6, Ethernet, Wi-Fi etc).
+        private const int PER_PACKET_OVERHEAD = 40;
+
         public Network () {
             _bytes_in = 0;
             _bytes_in_old = 0;
             _bytes_out = 0;
             _bytes_out_old = 0;
+
+            _packets_in = 0;
+            _packets_in_old = 0;
+            _packets_out = 0;
+            _packets_out_old = 0;
         }
 
         public int[] get_bytes () {
             update_bytes_total ();
             int[] ret;
-            ret = {_bytes_out, _bytes_in};
+            // Subtract approximate packet header size overhead to get actual payload size.
+            ret = {_bytes_out - _packets_out * PER_PACKET_OVERHEAD, _bytes_in - _packets_in * PER_PACKET_OVERHEAD};
             return ret;
         }
 
@@ -47,6 +63,8 @@ namespace WingpanelMonitor {
             var devices = GTop.get_netlist (out netlist);
             var n_bytes_out = 0;
             var n_bytes_in = 0;
+            var n_packets_out = 0;
+            var n_packets_in = 0;
             for (uint j = 0; j < netlist.number; ++j) {
                 var device = devices[j];
                 if (device != "lo" && device.substring (0, 3) != "tun") {
@@ -54,12 +72,20 @@ namespace WingpanelMonitor {
 
                     n_bytes_out += (int)netload.bytes_out;
                     n_bytes_in += (int)netload.bytes_in;
+
+                    n_packets_out += (int)netload.packets_out;
+                    n_packets_in += (int)netload.packets_in;
                 }
             }
             _bytes_out = (n_bytes_out - _bytes_out_old) / 1;
             _bytes_in = (n_bytes_in - _bytes_in_old) / 1;
             _bytes_out_old = n_bytes_out;
             _bytes_in_old = n_bytes_in;
+
+            _packets_out = (n_packets_out - _packets_out_old) / 1;
+            _packets_in = (n_packets_in - _packets_in_old) / 1;
+            _packets_out_old = n_packets_out;
+            _packets_in_old = n_packets_in;
         }
     }
 }
